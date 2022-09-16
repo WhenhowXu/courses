@@ -1,2 +1,2 @@
-import MainSection from "./MainSection";
-export { MainSection };
+import AppLayout from "./AppLayout";
+export { AppLayout };

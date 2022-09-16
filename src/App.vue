@@ -1,12 +1,17 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <app-layout>
+      <router-view></router-view>
+    </app-layout>
   </div>
 </template>
 
 <script>
+import { AppLayout } from "@/layout";
+
 export default {
   name: "App",
+  components: { AppLayout },
 };
 </script>
 
@@ -15,12 +20,5 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: lightblue;
-  padding: 24px;
 }
 </style>
