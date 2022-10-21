@@ -23,12 +23,11 @@ export default {
   bottom: 0;
   .app-header {
     height: 50px;
-    background-color: aqua;
+    background-color: lightblue;
     border-bottom: 1px solid #ccc;
   }
   .app-main {
     height: calc(100% - 50px);
-    padding: 24px;
   }
 }
 </style>
