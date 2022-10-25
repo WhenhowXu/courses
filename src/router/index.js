@@ -6,13 +6,12 @@ import DemosPage from "@/views/demosPage";
 Vue.use(VueRouter);
 
 const routes = [
+  { path: "/", redirect: "/demos" },
   {
     path: "/",
     name: "home",
     component: MainPage,
-    children: [
-      { path: "/demos", component: DemosPage }
-    ],
+    children: [{ path: "/demos", component: DemosPage }],
   },
 ];
 const router = new VueRouter({

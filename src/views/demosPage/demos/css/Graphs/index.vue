@@ -1,8 +1,9 @@
 <template>
-  <demo-list :demos="list">
-    <rhomboild slot="Rhomboild" />
-    <triangle slot="Triangle" />
-  </demo-list>
+  <a-space>
+    <div class="graph-wrapper" v-for="graph in graphs" :key="graph.component">
+      <component :is="graph.component" />
+    </div>
+  </a-space>
 </template>
 <script>
 import DemoList from "@/components/DemoList";
@@ -18,17 +19,16 @@ export default {
   },
   data() {
     return {
-      list: [
+      graphs: [
         {
           title: "三角形",
-          key: "1",
-          slotName: "Triangle",
+          component: "Triangle",
           keyswords: ["border"],
+          color: ''
         },
         {
           title: "平行四边形",
-          key: "2",
-          slotName: "Rhomboild",
+          component: "Rhomboild",
           keyswords: ["tansform"],
         },
       ],
@@ -37,7 +37,15 @@ export default {
 };
 </script>
 <style scoped lang="less">
-.demo-content-wrapper {
-  padding: 24px 48px;
+.graph-wrapper {
+  padding: 12px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 </style>

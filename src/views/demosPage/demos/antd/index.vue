@@ -6,7 +6,7 @@ export default {
   data() {
     list: [
       {
-        title: "多张背景图做图片",
+        title: "弹框中的表单",
         key: "1",
         slotName: "MutiAsBg",
       },

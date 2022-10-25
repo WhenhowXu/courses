@@ -6,6 +6,7 @@
         style="width: 300; height: 32px"
         placeholder="请选择示例"
         v-model="demoIds"
+        :show-search="{ filter }"
       />
     </header>
 
@@ -25,6 +26,14 @@ export default {
   computed: {
     demoName() {
       return this.demoIds.join("");
+    },
+  },
+  methods: {
+    filter(inputValue, path) {
+      return path.some(
+        (option) =>
+          option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1
+      );
     },
   },
   created() {

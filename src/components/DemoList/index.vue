@@ -12,8 +12,9 @@
 export default {
   name: "DemoList",
   props: {
-    demos: { type: Array, default: ()=>[] }
+    demos: { type: Array, default: () => [] },
   },
+ 
 };
 </script>
 <style scoped lang="less">
