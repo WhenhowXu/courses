@@ -14,7 +14,7 @@ export const DEMOS = [
         describe: "我是一段描述性文字",
         keywords: "",
         path: "",
-        componentName: 'AntdFormInTable'
+        componentName: "AntdFormInTable",
       },
       {
         id: "Ant-Table-2",
@@ -51,12 +51,22 @@ export const DEMOS = [
     ],
   },
   {
-    id: "Css",
+    id: "Vue",
     classify: "Ant_Design_Vue",
-    title: "css 练习",
+    title: "vue 练习",
     describe: "",
     keywords: "",
     path: "",
-    children: [],
+    children: [
+      {
+        id: "Vue-Table-1",
+        classify: "",
+        title: "Model修饰符",
+        describe: "我是一段描述性文字",
+        keywords: "",
+        path: "",
+        componentName: "VueModelModifier",
+      },
+    ],
   },
 ];

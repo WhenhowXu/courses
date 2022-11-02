@@ -7,10 +7,12 @@
 </template>
 <script>
 import AntdFormInTable from "./antd/FormInTable.vue";
+import VueModelModifier from "./vue/ModelModifier.vue";
 export default {
   name: "DemoDetailPage",
   components: {
     AntdFormInTable,
+    VueModelModifier,
   },
   methods: {
     handleBack() {
