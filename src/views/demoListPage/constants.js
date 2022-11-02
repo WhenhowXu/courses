@@ -1,0 +1,62 @@
+export const DEMOS = [
+  {
+    id: "ANTD",
+    classify: "Ant_Design_Vue",
+    title: "ant design vue 示例",
+    describe: "",
+    keywords: "",
+    path: "",
+    children: [
+      {
+        id: "Ant-Table-1",
+        classify: "",
+        title: "表格中的表单校验",
+        describe: "我是一段描述性文字",
+        keywords: "",
+        path: "",
+        componentName: 'AntdFormInTable'
+      },
+      {
+        id: "Ant-Table-2",
+        classify: "",
+        title: "表格中的表单校验",
+        describe: "我是一段描述性文字",
+        keywords: "",
+        path: "",
+      },
+      {
+        id: "Ant-Table-3",
+        classify: "",
+        title: "表格中的表单校验",
+        describe: "我是一段描述性文字",
+        keywords: "",
+        path: "",
+      },
+      {
+        id: "Ant-Table-4",
+        classify: "",
+        title: "表格中的表单校验",
+        describe: "我是一段描述性文字",
+        keywords: "",
+        path: "",
+      },
+      {
+        id: "Ant-Table-5",
+        classify: "",
+        title: "表格中的表单校验",
+        describe: "我是一段描述性文字",
+        keywords: "",
+        path: "",
+      },
+    ],
+  },
+  {
+    id: "Css",
+    classify: "Ant_Design_Vue",
+    title: "css 练习",
+    describe: "",
+    keywords: "",
+    path: "",
+    children: [],
+  },
+];
