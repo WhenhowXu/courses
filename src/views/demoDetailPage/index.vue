@@ -6,12 +6,15 @@
   </div>
 </template>
 <script>
-import AntdFormInTable from "./antd/FormInTable.vue";
-import VueModelModifier from "./vue/ModelModifier.vue";
+import AntdFormInTable from "./antd/FormInTable";
+import AntdPrintTable from "./antd/PrintTable";
+import VueModelModifier from "./vue/ModelModifier";
+
 export default {
   name: "DemoDetailPage",
   components: {
     AntdFormInTable,
+    AntdPrintTable,
     VueModelModifier,
   },
   methods: {

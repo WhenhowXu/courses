@@ -19,10 +19,11 @@ export const DEMOS = [
       {
         id: "Ant-Table-2",
         classify: "",
-        title: "表格中的表单校验",
-        describe: "我是一段描述性文字",
-        keywords: "",
+        title: "打印表格",
+        describe: "",
+        keywords: "vue-easy-print、ant-design-vue/table",
         path: "",
+        componentName: "AntdPrintTable",
       },
       {
         id: "Ant-Table-3",

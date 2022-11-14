@@ -10,7 +10,6 @@
     <div>
       <p>满足以数字开头的字符串，在输入完成后会进行格式化成数字</p>
       <input v-model.number="value3" />
-      <!-- <input v-model.number="value3" type="number" /> -->
       值：{{ value3 }} 类型：{{ typeof value3 }}
       <a-input v-model.number="value4" />
       值：{{ value4 }} 类型：{{ typeof value4 }}
