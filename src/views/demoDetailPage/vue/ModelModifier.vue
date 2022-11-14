@@ -1,20 +1,21 @@
 <template>
   <div>
-    <h3>.trim</h3>
+    <h3>1、.trim</h3>
     <div>
       <p>输入完成后会被去掉首尾空格</p>
       <input v-model.trim="value1" />
       <a-input v-model.trim="value2" />
     </div>
-    <h3>.number</h3>
+    <h3>2、.number</h3>
     <div>
       <p>满足以数字开头的字符串，在输入完成后会进行格式化成数字</p>
       <input v-model.number="value3" />
+      <!-- <input v-model.number="value3" type="number" /> -->
       值：{{ value3 }} 类型：{{ typeof value3 }}
       <a-input v-model.number="value4" />
       值：{{ value4 }} 类型：{{ typeof value4 }}
     </div>
-    <h3>.lazy</h3>
+    <h3>3、.lazy</h3>
     <div>
       <p>
         原生的在输入完成后失去焦点或者enter确认后然后同步,antd-design-vue组件无效
