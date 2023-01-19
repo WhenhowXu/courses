@@ -120,7 +120,6 @@ export default {
       this.formValues.products.push({ id: new Date().getTime() });
     },
   },
-  created() {},
 };
 </script>
 <style scoped lang="less">

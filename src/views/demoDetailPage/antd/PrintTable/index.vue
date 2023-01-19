@@ -5,11 +5,13 @@
     <vue-easy-print :ref="printer">
       <div>
         <print-container title="用户列表">
+          <template slot="header">单号：XXXXX0913921</template>
           <a-table
             row-key="key"
             :columns="columns"
             :dataSource="dataSource"
             :pagination="false"
+            bordered
           />
         </print-container>
         <print-container> </print-container>

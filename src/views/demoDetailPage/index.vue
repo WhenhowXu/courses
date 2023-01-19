@@ -8,14 +8,18 @@
 <script>
 import AntdFormInTable from "./antd/FormInTable";
 import AntdPrintTable from "./antd/PrintTable";
+import AntdFormInModal from "./antd/FormInModal";
 import VueModelModifier from "./vue/ModelModifier";
+import ElseBpmnFlowChart from "./else/BpmnFlowChart";
 
 export default {
   name: "DemoDetailPage",
   components: {
     AntdFormInTable,
     AntdPrintTable,
+    AntdFormInModal,
     VueModelModifier,
+    ElseBpmnFlowChart,
   },
   methods: {
     handleBack() {
@@ -29,10 +33,6 @@ export default {
     title() {
       return this.$route.query.title;
     },
-  },
-  created() {
-    console.log(this.$route);
-    console.log(this.$router);
   },
 };
 </script>

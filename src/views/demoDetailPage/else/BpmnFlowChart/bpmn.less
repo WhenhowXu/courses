@@ -1,0 +1,75 @@
+/*左边工具栏以及编辑节点的样式*/
+@import '~bpmn-js/dist/assets/diagram-js.css';
+@import '~bpmn-js/dist/assets/bpmn-font/css/bpmn.css';
+@import '~bpmn-js/dist/assets/bpmn-font/css/bpmn-codes.css';
+@import '~bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css';
+// @import '~bpmn-js-bpmnlint/dist/assets/css/bpmn-js-bpmnlint.css';
+
+.djs-palette {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  // width: 160px;
+  padding: 12px;
+  background: #fff;
+  border: 0;
+  box-shadow: 0 2px 10px 0 rgba(0, 36, 89, 0.1);
+
+  &.two-column.open {
+    width: 180px;
+  }
+
+  &.open {
+    width: 180px;
+  }
+
+  // .djs-palette-entries {
+  //   .group {
+  //     &:first-child {
+  //       display: none;
+  //     }
+  //   }
+  // }
+}
+
+.marchingants {
+  stroke-dasharray: 8;
+  animation: marchingants 1s forwards infinite linear;
+}
+
+@keyframes marchingants {
+  to {
+    stroke-dashoffset: 15;
+  }
+}
+
+.bjsl-button-inactive {
+  display: none;
+}
+
+.bjsl-button-error {
+  display: block;
+}
+
+.bjsl-issues {
+  background: #fff;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px 0 rgb(0 36 89 / 10%);
+}
+
+.bjsl-issues .error {
+  align-items: center;
+}
+
+[data-wpg-theme='dark'] {
+  .djs-palette {
+    background: #12161d;
+
+    .entry,
+    .dsj-palette-tottle {
+      color: #adb5bd;
+    }
+  }
+}

@@ -7,7 +7,9 @@
             <a-button slot="extra" type="link" @click="goToDemoDetail(demo)"
               >查看示例</a-button
             >
-            <strong>{{ demo.keywords }}</strong>
+            <div>
+              <a-tag v-for="keyword in demo.keywords" :key="keyword">{{ keyword }}</a-tag>
+            </div>
             <p>{{ demo.describe }}</p>
           </a-card>
         </a-col>

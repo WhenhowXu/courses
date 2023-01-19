@@ -1,3 +1,5 @@
 import ButtonContainer from "./ButtonContanier";
+import HaoTable from "./HaoTable";
+import { HaoYearPicker } from "./HaoFields";
 
-export { ButtonContainer };
+export { ButtonContainer, HaoTable, HaoYearPicker };

@@ -1,26 +1,28 @@
 import VueRouter from "vue-router";
 import Vue from "vue";
-import MainPage from "@/views/mainPage";
-import DemosPage from "@/views/demosPage";
-import DemoListPage from "@/views/demoListPage";
-import DemoDetailPage from "@/views/demoDetailPage";
-Vue.use(VueRouter);
+import Nprogress from "nprogress";
 
-const routes = [
-  { path: "/", redirect: "/demo-list" },
+Vue.use(VueRouter);
+const defaultRoutes = [
+  { path: "/", redirect: "/simple-search-table" },
+  { path: "/login", component: () => import("@/views/Login") },
+  { path: "/404", component: () => import("@/views/NotFound") },
   {
-    path: "/",
-    name: "home",
-    component: MainPage,
-    children: [
-      { path: "/demo-list", component: DemoListPage },
-      { path: "/demo-detail", component: DemoDetailPage },
-      { path: "/demos", component: DemosPage },
-    ],
+    path: "/simple-search-table",
+    component: () => import("@/views/SimpleSearchTable"),
   },
 ];
+
 const router = new VueRouter({
   mode: "history",
-  routes,
+  routes: defaultRoutes,
+});
+
+router.beforeEach(async (form, to, next) => {
+  Nprogress.start();
+  next();
+});
+router.afterEach(() => {
+  Nprogress.done();
 });
 export default router;

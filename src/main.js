@@ -4,8 +4,10 @@ import "ant-design-vue/dist/antd.css";
 import Antd from "ant-design-vue";
 import store from "@/store";
 import router from "@/router";
+import { useDirectives } from '@/directives';
 
-Vue.use(Antd);
+useDirectives(Vue).use(Antd);
+
 Vue.config.productionTip = false;
 
 Vue.directive("focus", {

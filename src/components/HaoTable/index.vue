@@ -1,0 +1,118 @@
+<template>
+  <div class="hao-table-wrapper">
+    <hao-search-form
+      :configs="searchConfigs"
+      :model="conditions"
+      @search="handleSearch"
+      @reset="handleSearch"
+    ></hao-search-form>
+    <a-table
+      class="hao-table-main"
+      :columns="tableColumns"
+      :pagination="false"
+      :dataSource="dataSource"
+      :loading="loading"
+      :scroll="{ x: '10000px', y: 'calc(100vh - 200px)' }"
+    >
+      <template slot="order" slot-scope="text, record, index">
+        {{ computedOrder(index, conditions.page, conditions.size) }}
+      </template>
+    </a-table>
+    <hao-pagination :total="total" />
+  </div>
+</template>
+<script>
+import HaoSearchForm from "./HaoSearchForm.vue";
+import HaoPagination from "./HaoPagination";
+
+const getOrderColumn = (width = 70) => {
+  return {
+    title: "序号",
+    dataIndex: "$_ORDER",
+    fix: "left",
+    scopedSlots: { customRender: "order" },
+    width,
+  };
+};
+const HaoTable = {
+  name: "HaoTable",
+  components: { HaoSearchForm, HaoPagination },
+  props: {
+    columns: { type: Array, default: () => [] },
+    orderable: { type: Boolean, default: false },
+    statistical: { type: Boolean, default: false },
+    operations: { type: Array, default: () => [] },
+    conditions: { type: Object, default: () => ({}) },
+    total: { type: Number, default: 0 },
+    dataSource: { type: Array, default: () => [] },
+    loading: Boolean,
+  },
+  computed: {
+    searchConfigs() {
+      return this.columns
+        .filter((c) => c.searchType)
+        .map((v) => {
+          return {
+            label: v.label || v.title,
+            key: v.dataIndex,
+            type: v.searchType,
+          };
+        });
+    },
+    tableColumns() {
+      let _columns = this.columns
+        .filter((v) => !v.onlySearch)
+        .map((v) => {
+          return {
+            title: v.title,
+            dataIndex: v.dataIndex,
+            width: v.width || 100,
+          };
+        });
+
+      if (this.orderable) {
+        _columns.unshift(getOrderColumn());
+      }
+      return _columns;
+    },
+  },
+  methods: {
+    computedOrder(index, page, size) {
+      return (page - 1) * size + index + 1;
+    },
+    handleSearch(values) {
+      this.$emit("search", { ...values, page: 1 });
+    },
+  },
+};
+HaoTable.HaoSearchForm = HaoSearchForm;
+
+export default HaoTable;
+</script>
+<style lang="less" scoped>
+.hao-table-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  .hao-table-main {
+    flex: 1;
+    /deep/ .ant-spin-nested-loading {
+      height: 100%;
+      .ant-spin-container {
+        height: 100%;
+      }
+    }
+    /deep/ .ant-table-placeholder {
+      position: absolute;
+      top: 52px;
+      width: 100%;
+    }
+    /deep/ .ant-table,
+    /deep/ .ant-table-content,
+    /deep/ .ant-table-body {
+      height: 100%;
+    }
+  }
+}
+</style>

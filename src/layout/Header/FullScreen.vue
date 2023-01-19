@@ -1,8 +1,9 @@
 <template>
-  <a-tooltip :title="title" placement="bottomRight">
+  <!-- <a-tooltip :title="title" placement="bottomRight"> -->
     <a-icon :type="iconType" @click="toogleFullScreen" />
-  </a-tooltip>
+  <!-- </a-tooltip> -->
 </template>
+
 <script>
 import screenFull from "screenfull";
 

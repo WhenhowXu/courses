@@ -1,7 +1,8 @@
 <template>
   <div class="AppHeader_Wrapper">
-    <h3>DEMO</h3>
+    <h3>{{ title }}</h3>
     <a-space>
+      <slot></slot>
       <full-screen />
     </a-space>
   </div>
@@ -13,6 +14,9 @@ export default {
   name: "AppHeader",
   components: {
     FullScreen,
+  },
+  props: {
+    title: String,
   },
 };
 </script>
