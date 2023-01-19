@@ -4,7 +4,8 @@ import Nprogress from "nprogress";
 
 Vue.use(VueRouter);
 const defaultRoutes = [
-  { path: "/", redirect: "/simple-search-table" },
+  { path: "/", redirect: "/demo" },
+  { path: "/demo", component: () => import("@/views/demo") },
   { path: "/login", component: () => import("@/views/Login") },
   { path: "/404", component: () => import("@/views/NotFound") },
   {

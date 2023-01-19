@@ -11,11 +11,15 @@
       :columns="tableColumns"
       :pagination="false"
       :dataSource="dataSource"
+      size="small"
       :loading="loading"
-      :scroll="{ x: '10000px', y: 'calc(100vh - 200px)' }"
+      :scroll="{ y: 'calc(100vh - 200px)' }"
     >
       <template slot="order" slot-scope="text, record, index">
         {{ computedOrder(index, conditions.page, conditions.size) }}
+      </template>
+      <template slot="operations" slot-scope="text, record, index">
+        <a type="link" @click="operate(record, index)">删除</a>
       </template>
     </a-table>
     <hao-pagination :total="total" />
@@ -29,7 +33,7 @@ const getOrderColumn = (width = 70) => {
   return {
     title: "序号",
     dataIndex: "$_ORDER",
-    fix: "left",
+    fixed: "left",
     scopedSlots: { customRender: "order" },
     width,
   };
@@ -67,11 +71,20 @@ const HaoTable = {
             title: v.title,
             dataIndex: v.dataIndex,
             width: v.width || 100,
+            ellipsis: v.ellipsis,
           };
         });
 
       if (this.orderable) {
         _columns.unshift(getOrderColumn());
+      }
+      if (this.operations && this.operations.length > 0) {
+        _columns.push({
+          title: "操作",
+          dataIndex: "$_operation",
+          fixed: "right",
+          scopedSlots: { customRender: "operations" },
+        });
       }
       return _columns;
     },
@@ -82,6 +95,9 @@ const HaoTable = {
     },
     handleSearch(values) {
       this.$emit("search", { ...values, page: 1 });
+    },
+    operate(record, index) {
+      this.$emit("operate", record, index);
     },
   },
 };
@@ -96,6 +112,8 @@ export default HaoTable;
   width: 100%;
   height: 100%;
   .hao-table-main {
+    margin-top: 12px;
+    padding: 12px;
     flex: 1;
     /deep/ .ant-spin-nested-loading {
       height: 100%;

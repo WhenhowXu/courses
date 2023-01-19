@@ -1,6 +1,6 @@
 <template>
   <div class="hao-pagination">
-    <a-pagination v-bind="$attrs" />
+    <a-pagination v-bind="$attrs"  />
   </div>
 </template>
 <script>
@@ -15,6 +15,5 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background-color: lightblue;
 }
 </style>

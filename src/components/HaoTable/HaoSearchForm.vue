@@ -10,10 +10,14 @@
       v-for="config in configs"
       :key="config.key"
       :label="config.label"
+      :style="{ width: fieldWidth }"
+      class="common-form-item"
     >
       <component
         :is="componentMap[config.type]"
         v-model="$attrs.model[config.key]"
+        style="width: 100%"
+        allowClear
       />
     </a-form-model-item>
     <a-form-model-item class="action-form-item">
@@ -29,6 +33,7 @@ import HaoYearPicker from "../HaoFields/HaoYearPicker";
 
 const componentMap = {
   input: "a-input",
+  inputNumber: "a-input-number",
   select: "a-select",
   cascader: "a-cascader",
   datePicker: "a-date-picker",
@@ -40,6 +45,8 @@ export default {
   props: {
     conditions: { type: Object, default: () => ({}) },
     configs: { type: Array, default: () => [] },
+    fieldWidth: { type: [Number, String], default: "33.33%" },
+    allowClear: { type: Boolean, default: true },
   },
   data() {
     return {
@@ -67,9 +74,16 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   padding: 8px;
-  .action-form-item {
+  .common-form-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     flex: 1;
     text-align: right;
+    min-width: 200px;
+    /deep/ .ant-form-item-label {
+      width: 80px;
+    }
   }
 }
 </style>
