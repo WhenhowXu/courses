@@ -8,7 +8,7 @@
       :total="total"
       :loading="loading"
       :operations="operations"
-      @search="updateConditions"
+      @search="updateConditions" 
     ></HaoTable>
   </div>
 </template>
@@ -19,20 +19,14 @@ import { fetchList } from "@/api/simpleSearchTable";
 let columns = [
   { title: "用户名称", dataIndex: "name", searchType: "input", ellipsis: true },
   { title: "年龄", dataIndex: "age", searchType: "inputNumber" },
-  {
-    title: "创建时间",
-    dataIndex: "createTime",
-    searchLabel: "创建日期",
-    searchType: "dataPicker",
-    width: 160,
-  },
+  { title: "创建时间", dataIndex: "createTime", searchLabel:'创建日期', searchType: "dataPicker", width: 160 },
   { title: "出生年份", dataIndex: "bothYear", searchType: "yearPicker" },
   { title: "出生月份", dataIndex: "bothMonth", searchType: "monthPicker" },
   { title: "所在城市", dataIndex: "city", searchType: "select" },
 ];
 
 export default {
-  name: "SimpleSearchTable",
+  name: "PlTableDemo",
   components: { HaoTable },
   data() {
     return {

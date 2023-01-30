@@ -8,10 +8,6 @@ const defaultRoutes = [
   { path: "/demo", component: () => import("@/views/demo") },
   { path: "/login", component: () => import("@/views/Login") },
   { path: "/404", component: () => import("@/views/NotFound") },
-  {
-    path: "/simple-search-table",
-    component: () => import("@/views/SimpleSearchTable"),
-  },
 ];
 
 const router = new VueRouter({

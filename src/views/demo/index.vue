@@ -1,7 +1,16 @@
 <template>
   <div class="demo-page">
     <div class="demo-header">
-      <h3>{{ demoTitle }}</h3>
+      <h3>
+        <a-dropdown v-model="visible">
+          <span>{{ demoTitle }} <a-icon type="down" /></span>
+          <a-menu slot="overlay" @click="handleSelectDemo">
+            <a-menu-item v-for="demo in demos" :key="demo.component">
+              {{ demo.title }}
+            </a-menu-item>
+          </a-menu>
+        </a-dropdown>
+      </h3>
       <a-space>
         <a-button ghost icon="rollback" shape="circle"></a-button>
         <a-button ghost icon="skin" shape="circle"></a-button>
@@ -20,8 +29,9 @@ export default {
   data() {
     return {
       currentDemo: demos[0],
-      dateList: demos,
+      demos,
       loadertpl: "",
+      visible: false,
     };
   },
   computed: {
@@ -37,6 +47,12 @@ export default {
           require([`@/views/demo/${componentName}`], resolve);
       },
       immediate: true,
+    },
+  },
+  methods: {
+    handleSelectDemo({ key }) {
+      if (key === this.currentDemo.component) return;
+      this.currentDemo = this.demos.find((v) => v.component === key);
     },
   },
 };

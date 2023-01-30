@@ -1,12 +1,20 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <a-locale-provider :locale="locale">
+      <router-view></router-view>
+    </a-locale-provider>
   </div>
 </template>
 
 <script>
+import locale from "ant-design-vue/lib/locale-provider/zh_CN";
 export default {
   name: "App",
+  data() {
+    return {
+      locale,
+    };
+  },
 };
 </script>
 

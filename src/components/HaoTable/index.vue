@@ -1,5 +1,5 @@
 <template>
-  <div class="hao-table-wrapper">
+  <div class="hao-table-wrapper" ref="haoSearchTable">
     <hao-search-form
       :configs="searchConfigs"
       :model="conditions"
@@ -99,6 +99,10 @@ const HaoTable = {
     operate(record, index) {
       this.$emit("operate", record, index);
     },
+  },
+  mounted() {
+    const el = this.$refs.haoSearchTable;
+    console.dir(el,'-------------');
   },
 };
 HaoTable.HaoSearchForm = HaoSearchForm;

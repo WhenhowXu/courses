@@ -29,7 +29,7 @@
   </a-form-model>
 </template>
 <script>
-import HaoYearPicker from "../HaoFields/HaoYearPicker";
+import { HaoYearPicker, HaoMonthPicker } from "../HaoFields";
 
 const componentMap = {
   input: "a-input",
@@ -39,9 +39,10 @@ const componentMap = {
   datePicker: "a-date-picker",
   rangePicker: "a-range-picker",
   yearPicker: "HaoYearPicker",
+  monthPicker: "HaoMonthPicker",
 };
 export default {
-  components: { HaoYearPicker },
+  components: { HaoYearPicker, HaoMonthPicker },
   props: {
     conditions: { type: Object, default: () => ({}) },
     configs: { type: Array, default: () => [] },
