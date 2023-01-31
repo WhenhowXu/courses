@@ -10,6 +10,7 @@
       <a-button @click="debounceClick">lodash防抖</a-button>
       {{ count }}
     </div>
+    <h-button>TEST</h-button>
   </div>
 </template>
 <script>

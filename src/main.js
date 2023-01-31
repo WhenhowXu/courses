@@ -5,8 +5,8 @@ import Antd from "ant-design-vue";
 import store from "@/store";
 import router from "@/router";
 import { useDirectives } from '@/directives';
-
-useDirectives(Vue).use(Antd);
+import HaoUI from '@xuwenhao/first-project/dist/test.common';
+useDirectives(Vue).use(Antd).use(HaoUI);
 
 Vue.config.productionTip = false;
 

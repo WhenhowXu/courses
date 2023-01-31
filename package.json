@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^3.2.8",
+    "@xuwenhao/first-project": "^1.1.1",
     "ant-design-vue": "^1.7.8",
     "axios": "^1.1.3",
     "bpmn-js": "^6.5.0",

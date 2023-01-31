@@ -4,7 +4,6 @@ let fn = null;
 
 export const useDebunceDirective = (Vue)=> Vue.directive('debounce',{
   inserted: function (el, binding) {
-    console.log(el, binding, '-------------------')
     const { modifiers, arg } = binding;
     const time = 300;
     let _arg = {};
