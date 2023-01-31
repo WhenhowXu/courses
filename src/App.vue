@@ -24,4 +24,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.page-wrapper {
+  height: calc(100vh - 50px);
+}
 </style>

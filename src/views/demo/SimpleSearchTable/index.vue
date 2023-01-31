@@ -66,8 +66,4 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
-.page-wrapper {
-  height: calc(100vh - 50px);
-}
-</style>
+
