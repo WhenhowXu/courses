@@ -1,35 +1,26 @@
 <template>
   <div class="page-wrapper">
-    <h3>1、使用是自定义指令</h3>
-    <div>
-      <a-button v-debounce="debounceAdd">自定义指令防抖效果</a-button>
-      {{ count }}
+    <div v-for="(demo, index) in demos" :key="index">
+      <h3>{{ index + 1 }}、{{ demo.name }}</h3>
+      <component :is="demo.component" />
     </div>
-    <h3>2、使用lodash中的工具类来实现</h3>
-    <div>
-      <a-button @click="debounceClick">lodash防抖</a-button>
-      {{ count }}
-    </div>
-    <h-button>TEST</h-button>
   </div>
 </template>
 <script>
-import { defineComponent, ref } from "vue";
-import debounce from "lodash/debounce";
+import { defineComponent } from "vue";
+import DebounceDemo from "./DebounceDemo";
+import CopyDemo from "./CopyDemo";
+
 export default defineComponent({
   name: "DerictiveDebounceDemo",
+  components: {
+    DebounceDemo,
+    CopyDemo
+  },
   setup() {
-    const count = ref(0);
-    const debounceAdd = () => {
-      count.value++;
-    };
-    const debounceClick = debounce(() => {
-      count.value++;
-    }, 300);
+    const demos = [{ name: "防抖", component: "DebounceDemo" }, {name:'复制',component: 'CopyDemo'}];
     return {
-      count,
-      debounceAdd,
-      debounceClick,
+      demos,
     };
   },
 });

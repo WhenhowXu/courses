@@ -28,7 +28,7 @@ export default {
   name: "DemoPage",
   data() {
     return {
-      currentDemo: demos[0],
+      currentDemo: demos[demos.length - 1],
       demos,
       loadertpl: "",
       visible: false,
