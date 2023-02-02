@@ -4,9 +4,16 @@ import "ant-design-vue/dist/antd.css";
 import Antd from "ant-design-vue";
 import store from "@/store";
 import router from "@/router";
-import { useDirectives } from '@/directives';
-import HaoUI from '@xuwenhao/first-project/dist/test.common';
-useDirectives(Vue).use(Antd).use(HaoUI);
+import directives from "@/directives";
+import HaoUI from "@xuwenhao/first-project/dist/test.common";
+import plTable from "pl-table";
+import "pl-table/themes/index.css";
+import "pl-table/themes/plTableStyle.css";
+import VXETable from "vxe-table";
+
+Vue.use(plTable);
+Vue.use(VXETable);
+Vue.use(directives).use(Antd).use(HaoUI);
 
 Vue.config.productionTip = false;
 

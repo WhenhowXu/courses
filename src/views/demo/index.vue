@@ -10,6 +10,14 @@
             </a-menu-item>
           </a-menu>
         </a-dropdown>
+        <div
+          class="tags-wrapper"
+          v-if="currentDemo.keywords && currentDemo.keywords.length > 0"
+        >
+          <a-tag v-for="(tag, index) in currentDemo.keywords" :key="index">
+            {{ tag }}
+          </a-tag>
+        </div>
       </h3>
       <a-space>
         <a-button ghost icon="rollback" shape="circle"></a-button>
@@ -28,7 +36,7 @@ export default {
   name: "DemoPage",
   data() {
     return {
-      currentDemo: demos[demos.length - 1],
+      currentDemo: demos[1],
       demos,
       loadertpl: "",
       visible: false,
@@ -77,6 +85,10 @@ export default {
       color: #fff;
       font-weight: bold;
     }
+  }
+  .tags-wrapper {
+    display: inline-block;
+    padding: 0 12px;
   }
 }
 </style>
