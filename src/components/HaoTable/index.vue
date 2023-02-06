@@ -100,10 +100,6 @@ const HaoTable = {
       this.$emit("operate", record, index);
     },
   },
-  mounted() {
-    const el = this.$refs.haoSearchTable;
-    console.dir(el,'-------------');
-  },
 };
 HaoTable.HaoSearchForm = HaoSearchForm;
 
