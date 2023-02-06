@@ -36,7 +36,7 @@ export default {
   name: "DemoPage",
   data() {
     return {
-      currentDemo: demos[1],
+      currentDemo: demos[0],
       demos,
       loadertpl: "",
       visible: false,

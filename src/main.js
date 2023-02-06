@@ -5,11 +5,12 @@ import Antd from "ant-design-vue";
 import store from "@/store";
 import router from "@/router";
 import directives from "@/directives";
-import HaoUI from "@xuwenhao/first-project/dist/test.common";
 import plTable from "pl-table";
 import "pl-table/themes/index.css";
 import "pl-table/themes/plTableStyle.css";
 import VXETable from "vxe-table";
+import HaoUI from "@/components";
+import "@/assets/icons";
 
 Vue.use(plTable);
 Vue.use(VXETable);

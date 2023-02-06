@@ -13,7 +13,6 @@
   </div>
 </template>
 <script>
-import { HaoTable } from "@/components";
 import { fetchList } from "@/api/simpleSearchTable";
 
 let columns = [
@@ -27,7 +26,6 @@ let columns = [
 
 export default {
   name: "SimpleSearchTable",
-  components: { HaoTable },
   data() {
     return {
       columns,
