@@ -1,4 +1,5 @@
 export default [
+  { title: "基于ant-desgin-vue封装组件库", component: "HaoComponentsDemo" },
   { title: "图标库", component: "CustomIconDemo" },
   { title: "主题切换页面效果", component: "ThemeChangeDemo" },
   {
