@@ -21,7 +21,18 @@
       </h3>
       <a-space>
         <a-button ghost icon="rollback" shape="circle"></a-button>
-        <a-button ghost icon="skin" shape="circle"></a-button>
+        <a-dropdown>
+          <a-button ghost icon="skin" shape="circle"></a-button>
+          <a-menu slot="overlay">
+            <a-menu-item
+              v-for="theme in themes"
+              :key="theme.value"
+              @click="setThemeKey(theme.value)"
+            >
+              <a href="javascript:;">{{ theme.label }}</a>
+            </a-menu-item>
+          </a-menu>
+        </a-dropdown>
       </a-space>
     </div>
     <div class="demo-main">
@@ -31,6 +42,7 @@
 </template>
 <script>
 import demos from "./demos";
+import { mapMutations, mapState } from "vuex";
 
 export default {
   name: "DemoPage",
@@ -46,6 +58,7 @@ export default {
     demoTitle() {
       return this.currentDemo && this.currentDemo.title;
     },
+    ...mapState(["themes"]),
   },
   watch: {
     currentDemo: {
@@ -62,6 +75,8 @@ export default {
       if (key === this.currentDemo.component) return;
       this.currentDemo = this.demos.find((v) => v.component === key);
     },
+    ...mapMutations(["setThemeKey"]),
+    
   },
 };
 </script>

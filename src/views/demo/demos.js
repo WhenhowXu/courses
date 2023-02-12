@@ -8,4 +8,5 @@ export default [
     keywords: ["ant-design-vue"],
   },
   { title: "自定义指令防抖", component: "DerictiveDebounceDemo" },
+  { title: "vxe-table大数据方案", component: "VxeTableDemo", keywords: ['vxe-table'] },
 ];

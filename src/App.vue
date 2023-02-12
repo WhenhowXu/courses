@@ -8,6 +8,8 @@
 
 <script>
 import locale from "ant-design-vue/lib/locale-provider/zh_CN";
+import { mapState } from 'vuex';
+
 export default {
   name: "App",
   data() {
@@ -15,6 +17,16 @@ export default {
       locale,
     };
   },
+  computed: {
+    ...mapState(['themeKey']),
+  },
+  watch:{
+    themeKey(themeKey, oldThemeKey){
+      if(themeKey === oldThemeKey) return;
+      require(`@/styles/themes/${themeKey}.less`);
+    }
+  }
+
 };
 </script>
 
