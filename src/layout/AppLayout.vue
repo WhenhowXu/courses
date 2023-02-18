@@ -1,40 +1,21 @@
 <template>
-  <a-layout class="app-container" id="components-layout-demo-custom-trigger">
-    <a-layout-header class="app-header">
-      <Header />
-    </a-layout-header>
-    <a-layout>
-      <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
-        <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
-          <a-menu-item key="1">
-            <a-icon type="user" />
-            <span>nav 1</span>
-          </a-menu-item>
-          <a-menu-item key="2">
-            <a-icon type="video-camera" />
-            <span>nav 2</span>
-          </a-menu-item>
-          <a-menu-item key="3">
-            <a-icon type="upload" />
-            <span>nav 3</span>
-          </a-menu-item>
-        </a-menu>
-      </a-layout-sider>
-      <a-layout-content>
-        <a-layout>
-          <a-layout-content><slot></slot></a-layout-content>
-          <a-layout-footer>Footer</a-layout-footer>
-        </a-layout>
-      </a-layout-content>
-    </a-layout>
-  </a-layout>
+  <div class="app-container">
+    <AppHeader />
+    <div class="app-main">
+      <AppMemu />
+      <div class="app-content">
+        <slot></slot>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import Header from "./Header";
+import AppHeader from "./AppHeader";
+import AppMemu from "./AppMemu";
 export default {
   name: "AppLayout",
-  components: { Header },
+  components: { AppHeader, AppMemu },
   data() {
     return {
       collapsed: false,
@@ -49,8 +30,18 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  .app-header {
-    background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+
+  .app-main {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    .app-content {
+      flex: 1;
+    }
   }
 }
 </style>

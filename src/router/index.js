@@ -1,13 +1,16 @@
 import VueRouter from "vue-router";
 import Vue from "vue";
 import Nprogress from "nprogress";
-
 Vue.use(VueRouter);
+function lazyLoad(path) {
+  return () => import(`@/views/${path}`);
+}
 const defaultRoutes = [
-  { path: "/", redirect: "/demo" },
-  { path: "/demo", component: () => import("@/views/demo") },
-  { path: "/login", component: () => import("@/views/Login") },
-  { path: "/404", component: () => import("@/views/NotFound") },
+  {
+    path: "/",
+    component: lazyLoad("main"),
+    children: [{ path: "/demo", component: lazyLoad("demo") }],
+  },
 ];
 
 const router = new VueRouter({

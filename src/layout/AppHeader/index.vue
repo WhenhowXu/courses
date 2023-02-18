@@ -1,8 +1,7 @@
 <template>
   <div class="AppHeader_Wrapper">
     <h3>{{ title }}</h3>
-    <a-space>
-      <slot></slot>
+    <a-space class="tool-bar-wrapper">
       <full-screen />
     </a-space>
   </div>
@@ -20,12 +19,21 @@ export default {
   },
 };
 </script>
-<style>
+<style lang="less" scoped>
 .AppHeader_Wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  background-color: lightblue;
+  width: 100%;
+  height: 50px;
+  padding: 0 12px;
+  .tool-bar-wrapper {
+    /deep/ .anticon {
+      font-size: 18px;
+      color: #fff;
+    }
+  }
 }
 </style>

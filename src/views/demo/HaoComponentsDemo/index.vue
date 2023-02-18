@@ -17,3 +17,8 @@ export default {
   },
 };
 </script>
+<style lang="less" scoped>
+.page-wrapper {
+  background-color: lightgray;
+}
+</style>
