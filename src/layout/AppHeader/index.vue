@@ -2,17 +2,20 @@
   <div class="AppHeader_Wrapper">
     <h3>{{ title }}</h3>
     <a-space class="tool-bar-wrapper">
+      <theme-changer/>
       <full-screen />
     </a-space>
   </div>
 </template>
 <script>
 import FullScreen from "./FullScreen";
+import ThemeChanger from "./ThemeChanger";
 
 export default {
   name: "AppHeader",
   components: {
     FullScreen,
+    ThemeChanger,
   },
   props: {
     title: String,

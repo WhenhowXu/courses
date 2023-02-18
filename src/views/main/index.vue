@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import AppLayout from "@/layout/AppLayout.vue";
+import AppLayout from "@/layout";
 
 export default {
   name: "MainPage",
