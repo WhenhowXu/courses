@@ -1,11 +1,12 @@
 <template>
-  <div class="app-menu">
+  <div class="app-side-menu">
     <a-menu
       style="width: 200px"
       :default-selected-keys="['1']"
       :open-keys.sync="openKeys"
       mode="inline"
-      @click="handleClick"
+      :theme="menuThemeKey"
+      @select="handleSelect"
     >
       <template v-for="item in menuData">
         <a-sub-menu
@@ -31,6 +32,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "AppMenu",
   data() {
@@ -44,7 +47,14 @@ export default {
             {
               name: "表格1",
               icon: "table",
-              path: "t1-01",
+              path: "/tables/test01",
+              templatePath: "tables/test01",
+            },
+            {
+              name: "表格2",
+              icon: "table",
+              path: "/tables/test02",
+              templatePath: "tables/test02",
             },
           ],
         },
@@ -73,16 +83,21 @@ export default {
       openKeys: [],
     };
   },
+  computed: {
+    ...mapGetters("settings", ["menuThemeKey"]),
+  },
   methods: {
-    handleClick() {},
+    handleSelect({ key, keyPath }) {
+      console.log(key, keyPath);
+      this.$router.push(key);
+    },
     titleClick() {},
   },
 };
 </script>
 
 <style lang="less" scoped>
-.app-menu {
+.app-side-menu {
   height: 100%;
-  background: lightpink;
 }
 </style>

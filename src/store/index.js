@@ -1,21 +1,17 @@
 import Vuex from "vuex";
 import Vue from "vue";
+import settings from './settings'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  modules: {},
+  modules: {
+    settings
+  },
   state: {
-    themeKey: "light",
-    themes: [
-      { label: "白色", value: "light" },
-      { label: "黑色", value: "dark" },
-    ],
+
   },
   mutations: {
-    setThemeKey(state, payload) {
-      state.themeKey = payload;
-      localStorage.setItem("theme", payload);
-    },
+
   },
 });

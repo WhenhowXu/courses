@@ -9,7 +9,10 @@ const defaultRoutes = [
   {
     path: "/",
     component: lazyLoad("main"),
-    children: [{ path: "/demo", component: lazyLoad("demo") }],
+    children: [
+      { path: "/tables/test01", component: lazyLoad("tables/test1"), meta: { name: 'KKKK' } },
+      { path: "/tables/test02", component: lazyLoad("tables/test2"), meta: { name: 'YYYY' } },
+    ],
   },
 ];
 

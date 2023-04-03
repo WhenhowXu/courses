@@ -4,7 +4,10 @@
         <div class="app-main">
             <AppMemu />
             <div class="app-content">
-                <slot></slot>
+                <MenuTabs/>
+                <div style="flex: 1">
+                    <slot></slot>
+                </div>
             </div>
         </div>
     </div>
@@ -13,9 +16,11 @@
 <script>
 import AppHeader from "./AppHeader";
 import AppMemu from "./AppMemu";
+import MenuTabs from './MenuTabs';
+
 export default {
     name: "AppLayout",
-    components: { AppHeader, AppMemu },
+    components: { AppHeader, AppMemu, MenuTabs },
     data() {
         return {
             collapsed: false,
@@ -40,6 +45,8 @@ export default {
         flex-direction: row;
         flex-wrap: nowrap;
         .app-content {
+            display: flex;
+            flex-direction: column;
             flex: 1;
         }
     }

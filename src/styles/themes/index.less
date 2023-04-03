@@ -1,0 +1,26 @@
+:root {
+    --nav-bg        : #001529;
+    --nav-text-color: #fff;
+
+    &[theme-mode='dark'] {
+        --nav-bg        : #001529;
+        --nav-text-color: #fff;
+    }
+
+    &[theme-mode='light'] {
+        --nav-bg: orange;
+    }
+}
+
+.app-header {
+    background-color: var(--nav-bg);
+    color           : var(--nav-text-color);
+
+    .app-header-title {
+        color: var(--nav-text-color);
+    }
+}
+
+.app-side-menu{
+    background-color: var(--nav-bg);
+}

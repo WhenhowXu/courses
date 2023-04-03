@@ -1,6 +1,6 @@
 <template>
-  <div class="AppHeader_Wrapper">
-    <h3>{{ title }}</h3>
+  <div class="app-header">
+    <h3 class="app-header-title">{{ title }}</h3>
     <a-space class="tool-bar-wrapper">
       <theme-changer/>
       <full-screen />
@@ -23,12 +23,11 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.AppHeader_Wrapper {
+.app-header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: lightblue;
   width: 100%;
   height: 50px;
   padding: 0 12px;
