@@ -33,53 +33,13 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { MEUNS } from "@/router";
 
 export default {
   name: "AppMenu",
   data() {
     return {
-      menuData: [
-        {
-          name: "Tables",
-          icon: "table",
-          path: "table",
-          children: [
-            {
-              name: "表格1",
-              icon: "table",
-              path: "/tables/test01",
-              templatePath: "tables/test01",
-            },
-            {
-              name: "表格2",
-              icon: "table",
-              path: "/tables/test02",
-              templatePath: "tables/test02",
-            },
-          ],
-        },
-        {
-          name: "Forms",
-          icon: "form",
-          path: "form",
-          children: [
-            {
-              name: "表格1",
-              icon: "table",
-              path: "t1-01",
-            },
-          ],
-        },
-        {
-          name: "VueDirectives",
-          icon: "table",
-          path: "vueDirectives",
-          children: [
-            { name: "防抖", path: "t1-01" },
-            { name: "水印", path: "t1-01" },
-          ],
-        },
-      ],
+      menuData: MEUNS,
       openKeys: [],
     };
   },

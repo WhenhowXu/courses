@@ -1,6 +1,11 @@
 <template>
-  <div class="app-tabs">
-    <a-tabs :active-key="activePage">
+  <div class="app-tabs-wrapper">
+    <a-tabs
+      class="app-tabs"
+      :active-key="activePage"
+      type="editable-card"
+      hideAdd
+    >
       <a-tab-pane
         v-for="tab in pageList"
         :key="tab.path"
@@ -32,6 +37,7 @@ export default {
         this.linkList.push(this.activePage);
         this.pageList.push(matcheds);
       }
+      console.log(this.pageList, "---------pageList");
     },
   },
   created() {
@@ -46,7 +52,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.app-tabs {
-  background-color: lightblue;
+.app-tabs-wrapper {
+  .app-tabs {
+    /deep/ .ant-tabs-nav-container {
+      background: orange;
+    }
+  }
 }
 </style>
