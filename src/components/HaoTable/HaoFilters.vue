@@ -17,7 +17,8 @@
         :is="componentMap[config.type]"
         v-model="$attrs.model[config.key]"
         allowClear
-        style="width: 100%;min-width: 200px"
+        style="width: 100%; min-width: 200px"
+        v-bind="getFieldProps(config)"
       />
     </a-form-model-item>
     <a-form-model-item class="common-form-item action-form-item">
@@ -50,6 +51,7 @@ const componentMap = {
   monthPicker: "HaoMonthPicker",
 };
 export default {
+  name: "HaoFilters",
   components: { HaoYearPicker, HaoMonthPicker },
   props: {
     conditions: { type: Object, default: () => ({}) },
@@ -66,6 +68,13 @@ export default {
     };
   },
   methods: {
+    getFieldProps(f) {
+      switch (f.type) {
+        case "select":
+          return { options: f.options };
+      }
+      return {};
+    },
     submit() {
       this.$refs.haoSearchForm.validate((valid) => {
         if (valid) {

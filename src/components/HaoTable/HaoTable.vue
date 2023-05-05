@@ -26,7 +26,7 @@
   </div>
 </template>
 <script>
-import HaoSearchForm from "./HaoSearchForm.vue";
+import HaoSearchForm from "./HaoFilters";
 import HaoPagination from "./HaoPagination";
 
 const getOrderColumn = (width = 70) => {
@@ -54,12 +54,13 @@ const HaoTable = {
   computed: {
     searchConfigs() {
       return this.columns
-        .filter((c) => c.searchType)
+        .filter((c) => c.filterConfig)
         .map((v) => {
           return {
             label: v.label || v.title,
             key: v.dataIndex,
             type: v.searchType,
+            ...v.filterConfig,
           };
         });
     },

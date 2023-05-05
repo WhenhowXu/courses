@@ -13,10 +13,10 @@ export const MEUNS = [
     path: "table",
     children: [
       {
-        name: "表格1",
+        name: "带搜索表格",
         icon: "table",
-        path: "/tables/test01",
-        templatePath: "tables/test1",
+        path: "/tables/searchTable",
+        templatePath: "tables/searchTable",
       },
       {
         name: "表格2",

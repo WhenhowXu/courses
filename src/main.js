@@ -1,4 +1,4 @@
-import '@/styles/themes/index.less'
+import "@/styles/themes/index.less";
 import Vue from "vue";
 import App from "./App.vue";
 import "ant-design-vue/dist/antd.css";
@@ -10,14 +10,15 @@ import plTable from "pl-table";
 import "pl-table/themes/index.css";
 import "pl-table/themes/plTableStyle.css";
 import VXETable from "vxe-table";
-import 'xe-utils'
-import 'vxe-table/lib/style.css'
+import "xe-utils";
+import "vxe-table/lib/style.css";
+import HaoTable from "@/components/HaoTable";
 
 import "@/assets/icons";
 
 Vue.use(plTable);
 Vue.use(VXETable);
-Vue.use(directives).use(Antd);
+Vue.use(directives).use(Antd).use(HaoTable);
 
 Vue.config.productionTip = false;
 

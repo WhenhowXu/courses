@@ -5,6 +5,7 @@
       :active-key="activePage"
       type="editable-card"
       hideAdd
+      size="small"
     >
       <a-tab-pane
         v-for="tab in pageList"
