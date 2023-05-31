@@ -1,11 +1,30 @@
 import VueRouter from "vue-router";
-import Vue from "vue";
 import Nprogress from "nprogress";
+// import { lazyLoad } from "./utils";
+import Login from "../views/login/index.vue";
+import NotFound from "../views/notFound/index.vue";
 
-Vue.use(VueRouter);
-function lazyLoad(path) {
-  return () => import(`@/views/${path}`);
-}
+// 默认路由
+const DEFAULT_ROUTERS = [
+  {
+    path: "/",
+    redirect: {
+      path: "/login",
+    },
+  },
+  {
+    path: "/login",
+    component: Login,
+    name: "Login",
+  },
+  {
+    path: "/404",
+    component: NotFound,
+    name: "NotFound",
+  },
+];
+
+const router = new VueRouter({ mode: "history", routes: DEFAULT_ROUTERS });
 export const MEUNS = [
   {
     name: "Tables",
@@ -48,51 +67,26 @@ export const MEUNS = [
     ],
   },
 ];
-const generateRoutersByMenu = (menus) => {
-  let addRoutes = [];
-  function pushRoute(menus, addRoutes) {
-    if (menus && menus.length > 0) {
-      menus.forEach((v) => {
-        if (v.children?.length > 0) {
-          pushRoute(v.children, addRoutes);
-        } else {
-          addRoutes.push({
-            meta: { name: v.name },
-            path: v.path,
-            component: lazyLoad(v.templatePath),
-          });
-        }
-      });
-    }
-  }
-  pushRoute(menus, addRoutes);
-  return addRoutes;
-};
-
-const defaultRoutes = [
-  {
-    path: "/",
-    component: lazyLoad("main"),
-    children: generateRoutersByMenu(MEUNS),
-    // [
-    //   {
-    //     path: "/tables/test01",
-    //     component: lazyLoad("tables/test1"),
-    //     meta: { name: "KKKK" },
-    //   },
-    //   {
-    //     path: "/tables/test02",
-    //     component: lazyLoad("tables/test2"),
-    //     meta: { name: "YYYY" },
-    //   },
-    // ],
-  },
-];
-
-const router = new VueRouter({
-  mode: "history",
-  routes: defaultRoutes,
-});
+// const generateRoutersByMenu = (menus) => {
+//   let addRoutes = [];
+//   function pushRoute(menus, addRoutes) {
+//     if (menus && menus.length > 0) {
+//       menus.forEach((v) => {
+//         if (v.children?.length > 0) {
+//           pushRoute(v.children, addRoutes);
+//         } else {
+//           addRoutes.push({
+//             meta: { name: v.name },
+//             path: v.path,
+//             component: lazyLoad(v.templatePath),
+//           });
+//         }
+//       });
+//     }
+//   }
+//   pushRoute(menus, addRoutes);
+//   return addRoutes;
+// };
 
 router.beforeEach(async (form, to, next) => {
   Nprogress.start();
@@ -101,4 +95,5 @@ router.beforeEach(async (form, to, next) => {
 router.afterEach(() => {
   Nprogress.done();
 });
+
 export default router;

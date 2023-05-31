@@ -19,6 +19,7 @@
     "decimal.js": "^10.4.3",
     "js-base64": "^3.7.2",
     "lodash": "^4.17.21",
+    "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
     "pl-table": "^2.7.5",
     "resize-detector": "^0.3.0",

@@ -1,4 +1,5 @@
 import "@/styles/themes/index.less";
+import VueRouter from "vue-router";
 import Vue from "vue";
 import App from "./App.vue";
 import "ant-design-vue/dist/antd.css";
@@ -13,14 +14,16 @@ import VXETable from "vxe-table";
 import "xe-utils";
 import "vxe-table/lib/style.css";
 import HaoTable from "@/components/HaoTable";
-
 import "@/assets/icons";
+require("@/apiMock");
 
+Vue.use(VueRouter);
 Vue.use(plTable);
 Vue.use(VXETable);
 Vue.use(directives).use(Antd).use(HaoTable);
-
 Vue.config.productionTip = false;
+
+store.dispatch("settings/updateLoginElements");
 
 new Vue({
   router,

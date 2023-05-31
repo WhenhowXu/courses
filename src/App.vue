@@ -1,14 +1,17 @@
 <template>
   <div id="app">
     <a-config-provider :locale="locale">
-      <router-view></router-view>
+      <transition name="fade" mode="out-in">
+        <router-view></router-view>
+      </transition>
     </a-config-provider>
   </div>
 </template>
 
 <script>
 import locale from "ant-design-vue/lib/locale-provider/zh_CN";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
+import { getLogionElements } from '@/api/plaform';
 
 export default {
   name: "App",
@@ -18,25 +21,20 @@ export default {
     };
   },
   computed: {
-    ...mapState(['themeKey']),
+    ...mapState(["themeKey"]),
   },
-  watch:{
-    themeKey(themeKey, oldThemeKey){
-      if(themeKey === oldThemeKey) return;
+  watch: {
+    themeKey(themeKey, oldThemeKey) {
+      if (themeKey === oldThemeKey) return;
       require(`@/styles/themes/${themeKey}.less`);
-    }
-  }
-
+    },
+  },
+  mounted() {
+    getLogionElements().then((res) => {
+      console.log(res);
+    });
+  },
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.page-wrapper {
-  height: calc(100vh - 50px);
-}
-</style>
+<style></style>

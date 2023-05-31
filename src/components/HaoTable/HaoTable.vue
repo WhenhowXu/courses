@@ -28,7 +28,7 @@
 <script>
 import HaoSearchForm from "./HaoFilters";
 import HaoPagination from "./HaoPagination";
-
+function noop() {}
 const getOrderColumn = (width = 70) => {
   return {
     title: "序号",
@@ -50,6 +50,15 @@ const HaoTable = {
     total: { type: Number, default: 0 },
     dataSource: { type: Array, default: () => [] },
     loading: Boolean,
+    formatConditions: { type: Function, default: noop },
+    loadSource: { type: Function, default: noop },
+  },
+  data() {
+    return {
+      loading: false,
+      total: 0,
+      dataSource: [],
+    };
   },
   computed: {
     searchConfigs() {
@@ -100,6 +109,7 @@ const HaoTable = {
     operate(record, index) {
       this.$emit("operate", record, index);
     },
+    async updateList() {},
   },
 };
 HaoTable.HaoSearchForm = HaoSearchForm;

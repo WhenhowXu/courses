@@ -1,10 +1,12 @@
 // 带搜索表格
 <template>
   <div>
-    <hao-table :columns="columns" :load="loadData" />
+    <hao-table :columns="columns" @load="loadData" />
   </div>
 </template>
 <script>
+import { getUserList } from "@/api/searchTable";
+
 const columns = [
   {
     dataIndex: "name",
@@ -36,7 +38,7 @@ const columns = [
   },
   {
     dataIndex: "city",
-    title: "城市",
+    title: "城市-选择框",
     filterConfig: {
       type: "select",
       options: [
@@ -54,7 +56,23 @@ export default {
     };
   },
   methods: {
-    loadData() {},
+    async loadData(params, conditions) {
+      console.log(params, conditions);
+      let result = {
+        total: 0,
+        dataSource: [],
+      };
+      try {
+        const res = await getUserList(params);
+        if (res.status === "success") {
+          result.total = res.data?.total || 0;
+          result.dataSource = res.data?.records || [];
+        }
+      } catch (err) {
+        console.log(err);
+      }
+      return result;
+    },
   },
 };
 </script>
