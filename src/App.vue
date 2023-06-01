@@ -11,7 +11,7 @@
 <script>
 import locale from "ant-design-vue/lib/locale-provider/zh_CN";
 import { mapState } from "vuex";
-import { getLogionElements } from '@/api/plaform';
+import { getLogionElements } from "@/api/plaform";
 
 export default {
   name: "App",
@@ -37,4 +37,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+html,
+body {
+  height: 100%;
+}
+#app {
+  height: 100%;
+  background-color: lavenderblush;
+}
+.page-contianer {
+  height: 100%;
+}
+</style>
