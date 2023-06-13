@@ -1,3 +1,3 @@
-function lazyLoad(path) {
-    return () => import(`@/views/${path}`);
-  }
+export function lazyLoad(path) {
+  return () => import(`@/views/${path}`);
+}

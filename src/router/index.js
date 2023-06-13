@@ -1,8 +1,9 @@
 import VueRouter from "vue-router";
 import Nprogress from "nprogress";
-// import { lazyLoad } from "./utils";
+import { lazyLoad } from "./utils";
 import Login from "../views/login/index.vue";
 import NotFound from "../views/notFound/index.vue";
+import store from "@/store";
 
 // 默认路由
 const DEFAULT_ROUTERS = [
@@ -16,6 +17,11 @@ const DEFAULT_ROUTERS = [
     path: "/login",
     component: Login,
     name: "Login",
+  },
+  {
+    path: "/dashboard",
+    component: lazyLoad("dashboard"),
+    name: "Dashboard",
   },
   {
     path: "/404",
@@ -87,8 +93,31 @@ export const MEUNS = [
 //   pushRoute(menus, addRoutes);
 //   return addRoutes;
 // };
+function getPermissions() {
+  if (store.state.menus?.length > 0) {
+    return Promise.resolve();
+  } else {
+    return store.dispatch('queryPermissions')
+  }
+}
 
-router.beforeEach(async (form, to, next) => {
+router.beforeEach(async (to, from, next) => {
+  console.log(store.state.isLogin, to, from, "-------------------");
+  if (store.state.isLogin) {
+    if (to.path === "/login" || to.path === "/") {
+      getPermissions().then(() => {
+        next({ path: "/dashboard" });
+      });
+    } else {
+      getPermissions().then(() => {
+        next();
+      });
+    }
+  } else {
+    store.commit("logout").then(() => {
+      next({ path: "/login" });
+    });
+  }
   Nprogress.start();
   next();
 });
