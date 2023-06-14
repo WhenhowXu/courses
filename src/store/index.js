@@ -14,11 +14,17 @@ export default new Vuex.Store({
     menus: [],
     buttons: [],
   },
-  mutations: {},
+  mutations: {
+    setPermissions(state, data) {
+      state.menus = data?.menus || [];
+      state.buttons = data?.buttons || [];
+    },
+  },
   actions: {
-    queryPermissions() {
+    queryPermissions({ commit }) {
       return new Promise((resolve) => {
         getMenus().then((res) => {
+          commit("setPermissions", { menus: res.data });
           resolve(res.data);
         });
       });

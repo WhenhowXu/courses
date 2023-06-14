@@ -8,7 +8,7 @@
       :theme="menuThemeKey"
       @select="handleSelect"
     >
-      <template v-for="item in menuData">
+      <template v-for="item in menus">
         <a-sub-menu
           v-if="item.children && item.children.length"
           :key="item.path"
@@ -32,23 +32,21 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { MEUNS } from "@/router";
+import { mapGetters, mapState } from "vuex";
 
 export default {
   name: "AppMenu",
   data() {
     return {
-      menuData: MEUNS,
       openKeys: [],
     };
   },
   computed: {
     ...mapGetters("settings", ["menuThemeKey"]),
+    ...mapState(["menus"]),
   },
   methods: {
-    handleSelect({ key, keyPath }) {
-      console.log(key, keyPath);
+    handleSelect({ key }) {
       this.$router.push(key);
     },
     titleClick() {},

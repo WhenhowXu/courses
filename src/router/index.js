@@ -8,20 +8,9 @@ import store from "@/store";
 // 默认路由
 const DEFAULT_ROUTERS = [
   {
-    path: "/",
-    redirect: {
-      path: "/login",
-    },
-  },
-  {
     path: "/login",
     component: Login,
     name: "Login",
-  },
-  {
-    path: "/dashboard",
-    component: lazyLoad("dashboard"),
-    name: "Dashboard",
   },
   {
     path: "/404",
@@ -31,85 +20,50 @@ const DEFAULT_ROUTERS = [
 ];
 
 const router = new VueRouter({ mode: "history", routes: DEFAULT_ROUTERS });
-export const MEUNS = [
-  {
-    name: "Tables",
-    icon: "table",
-    path: "table",
-    children: [
-      {
-        name: "带搜索表格",
-        icon: "table",
-        path: "/tables/searchTable",
-        templatePath: "tables/searchTable",
-      },
-      {
-        name: "表格2",
-        icon: "table",
-        path: "/tables/test02",
-        templatePath: "tables/test2",
-      },
-    ],
-  },
-  {
-    name: "Forms",
-    icon: "form",
-    path: "form",
-    children: [
-      {
-        name: "表格1",
-        icon: "table",
-        path: "t1-01",
-      },
-    ],
-  },
-  {
-    name: "VueDirectives",
-    icon: "table",
-    path: "vueDirectives",
-    children: [
-      { name: "防抖", path: "t1-01" },
-      { name: "水印", path: "t1-01" },
-    ],
-  },
-];
-// const generateRoutersByMenu = (menus) => {
-//   let addRoutes = [];
-//   function pushRoute(menus, addRoutes) {
-//     if (menus && menus.length > 0) {
-//       menus.forEach((v) => {
-//         if (v.children?.length > 0) {
-//           pushRoute(v.children, addRoutes);
-//         } else {
-//           addRoutes.push({
-//             meta: { name: v.name },
-//             path: v.path,
-//             component: lazyLoad(v.templatePath),
-//           });
-//         }
-//       });
-//     }
-//   }
-//   pushRoute(menus, addRoutes);
-//   return addRoutes;
-// };
-function getPermissions() {
+
+function formatMenusToRoutes(menus) {
+  function getChildren(items, children) {
+    if (items?.length) {
+      items.forEach((v) => {
+        if (v.templatePath && v.path) {
+          children.push({
+            path: v.path,
+            component: lazyLoad(v.templatePath),
+            meta: { name: v.name },
+          });
+        }
+        if (v.children?.length) {
+          getChildren(v.children, children);
+        }
+      });
+    }
+  }
+  let children = [];
+  getChildren(menus, children);
+  return [
+    { path: "/", redirect: children[0]?.path },
+    { children, component: lazyLoad("main"), path: "/" },
+  ];
+}
+function getPermissions($router) {
   if (store.state.menus?.length > 0) {
     return Promise.resolve();
   } else {
-    return store.dispatch('queryPermissions')
+    return store.dispatch("queryPermissions").then((menus) => {
+      const _routes = formatMenusToRoutes(menus);
+      $router.addRoutes(_routes);
+    });
   }
 }
 
 router.beforeEach(async (to, from, next) => {
-  console.log(store.state.isLogin, to, from, "-------------------");
   if (store.state.isLogin) {
-    if (to.path === "/login" || to.path === "/") {
-      getPermissions().then(() => {
-        next({ path: "/dashboard" });
+    if (to.path === "/login") {
+      getPermissions(router).then(() => {
+        next({ path: "/" });
       });
     } else {
-      getPermissions().then(() => {
+      getPermissions(router).then(() => {
         next();
       });
     }

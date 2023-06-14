@@ -44,7 +44,6 @@ body {
 }
 #app {
   height: 100%;
-  background-color: lavenderblush;
 }
 .page-contianer {
   height: 100%;

@@ -1,26 +1,34 @@
 :root {
-    --nav-bg        : #001529;
+    --nav-bg: #001529;
     --nav-text-color: #fff;
 
     &[theme-mode='dark'] {
-        --nav-bg        : #001529;
+        --nav-bg: #001529;
         --nav-text-color: #fff;
     }
 
     &[theme-mode='light'] {
-        --nav-bg: orange;
+        --nav-bg: #fff;
     }
+}
+
+body {
+    background-color: #f4f6f9;
 }
 
 .app-header {
     background-color: var(--nav-bg);
-    color           : var(--nav-text-color);
+    color: var(--nav-text-color);
 
     .app-header-title {
         color: var(--nav-text-color);
     }
 }
 
-.app-side-menu{
+.app-content {
+    background-color: #f4f6f9;
+}
+
+.app-side-menu {
     background-color: var(--nav-bg);
 }

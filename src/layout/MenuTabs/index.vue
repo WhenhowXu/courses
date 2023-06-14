@@ -38,7 +38,6 @@ export default {
         this.linkList.push(this.activePage);
         this.pageList.push(matcheds);
       }
-      console.log(this.pageList, "---------pageList");
     },
   },
   created() {
@@ -51,13 +50,3 @@ export default {
   },
 };
 </script>
-
-<style lang="less" scoped>
-.app-tabs-wrapper {
-  .app-tabs {
-    /deep/ .ant-tabs-nav-container {
-      background: orange;
-    }
-  }
-}
-</style>
