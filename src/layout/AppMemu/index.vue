@@ -2,8 +2,8 @@
   <div class="app-side-menu">
     <a-menu
       style="width: 200px"
-      :default-selected-keys="['1']"
-      :open-keys.sync="openKeys"
+      :selectedKeys.sync="selectedKeys"
+      :openKeys.sync="openKeys"
       mode="inline"
       :theme="menuThemeKey"
       @select="handleSelect"
@@ -39,17 +39,44 @@ export default {
   data() {
     return {
       openKeys: [],
+      selectedKeys: [],
     };
   },
+
   computed: {
     ...mapGetters("settings", ["menuThemeKey"]),
-    ...mapState(["menus"]),
+    ...mapState(["menus", "menusMap"]),
   },
   methods: {
+    getOpenKeys(key, menusMap) {
+      let keys = [];
+      function findPath(key, keys) {
+        const p = menusMap[key];
+        if (p && p.parentPath) {
+          keys.push(p.parentPath);
+          findPath(p.parentPath, keys);
+        }
+      }
+      findPath(key, keys);
+      return keys;
+    },
+    handleRouteChange() {
+      const { path } = this.$route;
+      this.selectedKeys = [path];
+      this.openKeys = this.getOpenKeys(path, this.menusMap);
+    },
     handleSelect({ key }) {
       this.$router.push(key);
     },
     titleClick() {},
+  },
+  watch: {
+    $route: {
+      handler: function () {
+        this.handleRouteChange();
+      },
+      immediate: true,
+    },
   },
 };
 </script>

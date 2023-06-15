@@ -6,6 +6,8 @@
       type="editable-card"
       hideAdd
       size="small"
+      @edit="handleEdit"
+      @change="handleTabChange"
     >
       <a-tab-pane
         v-for="tab in pageList"
@@ -27,6 +29,29 @@ export default {
       multipage: true,
     };
   },
+  methods: {
+    handleTabChange(key) {
+      this.activePage = key;
+    },
+    handleRemoveTab(key) {
+      if (this.pageList.length === 1) {
+        this.$message.warning("最后一页不可以关闭");
+        return;
+      }
+      this.pageList = this.pageList.filter((v) => v.path !== key);
+      if (this.activePage === key) {
+        this.activePage = this.pageList[this.pageList.length - 1]?.path;
+      }
+    },
+    handleEdit(key, action) {
+      console.log(key, action);
+      switch (action) {
+        case "remove":
+          this.handleRemoveTab(key);
+          break;
+      }
+    },
+  },
   watch: {
     $route: function (newRoute) {
       let matcheds = newRoute["matched"][1];
@@ -37,6 +62,18 @@ export default {
       } else if (this.linkList.indexOf(this.activePage) < 0) {
         this.linkList.push(this.activePage);
         this.pageList.push(matcheds);
+      }
+    },
+    activePage: function (key) {
+      if (!key || key === "/") return;
+      if (key.indexOf("/") === 0) {
+        const _route = this.pageList.find((v) => v.path === key),
+          _path = (_route && _route.fullPath) || key;
+        if (this.$route.fullPath !== _path) {
+          this.$router.push(_path);
+        }
+      } else {
+        this.$router.push(JSON.parse(key));
       }
     },
   },
