@@ -1,7 +1,6 @@
 // 带搜索表格
 <template>
   <div>
-    <hao-table :columns="columns" @load="loadData" />
   </div>
 </template>
 <script>

@@ -1,5 +1,22 @@
 export const INSERT_ROUTES = [
   {
+    name: "Forms",
+    icon: "form",
+    path: "forms",
+    children: [
+      {
+        name: "自定义表单",
+        path: "/forms/haoFields",
+        templatePath: "forms/haoFields",
+      },
+      {
+        name: "动态增减表单",
+        path: "/forms/dymicForm",
+        templatePath: "forms/dymicForm",
+      },
+    ],
+  },
+  {
     name: "Tables",
     icon: "table",
     path: "table",
@@ -15,18 +32,6 @@ export const INSERT_ROUTES = [
         icon: "table",
         path: "/tables/test02",
         templatePath: "tables/test2",
-      },
-    ],
-  },
-  {
-    name: "Forms",
-    icon: "form",
-    path: "forms",
-    children: [
-      {
-        name: "动态增减表单",
-        path: "/forms/dymicForm",
-        templatePath: "forms/dymicForm",
       },
     ],
   },

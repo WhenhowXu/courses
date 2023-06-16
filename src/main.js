@@ -7,20 +7,15 @@ import Antd from "ant-design-vue";
 import store from "@/store";
 import router from "@/router";
 import directives from "@/directives";
-import plTable from "pl-table";
-import "pl-table/themes/index.css";
-import "pl-table/themes/plTableStyle.css";
-import VXETable from "vxe-table";
-import "xe-utils";
-import "vxe-table/lib/style.css";
-import HaoTable from "@/components/HaoTable";
-import "@/assets/icons";
+import HaoFields from '@/components/HaoFields';
+
 require("@/apiMock");
 
 Vue.use(VueRouter);
-Vue.use(plTable);
-Vue.use(VXETable);
-Vue.use(directives).use(Antd).use(HaoTable);
+Vue.use(directives);
+Vue.use(Antd);
+Vue.use(HaoFields);
+
 Vue.config.productionTip = false;
 
 store.dispatch("settings/updateLoginElements");
