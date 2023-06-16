@@ -87,3 +87,8 @@ export default {
   },
 };
 </script>
+<style lang="less" scoped>
+/deep/.ant-tabs-bar {
+  margin-bottom: 0;
+}
+</style>
