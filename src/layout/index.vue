@@ -5,7 +5,7 @@
       <AppMemu />
       <div class="app-content">
         <MenuTabs />
-        <div style="flex: 1">
+        <div class="app-tab-page" style="flex: 1">
           <slot></slot>
         </div>
       </div>
