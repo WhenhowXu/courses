@@ -7,14 +7,15 @@ import Antd from "ant-design-vue";
 import store from "@/store";
 import router from "@/router";
 import directives from "@/directives";
-import HaoFields from '@/components/HaoFields';
-
+import HaoFields from "@/components/HaoFields";
+import HaoSearchTable from "@/components/HaoSearchTable";
 require("@/apiMock");
 
 Vue.use(VueRouter);
 Vue.use(directives);
 Vue.use(Antd);
 Vue.use(HaoFields);
+Vue.use(HaoSearchTable);
 
 Vue.config.productionTip = false;
 

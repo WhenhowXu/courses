@@ -1,6 +1,7 @@
 // 带搜索表格
 <template>
-  <div>
+  <div class="search-table-page">
+    <hao-search-table />
   </div>
 </template>
 <script>
@@ -75,3 +76,9 @@ export default {
   },
 };
 </script>
+<style lang="less" scoped>
+.search-table-page {
+  height: 100%;
+  background-color: lightblue;
+}
+</style>
