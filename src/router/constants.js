@@ -14,6 +14,11 @@ export const INSERT_ROUTES = [
         path: "/forms/dymicForm",
         templatePath: "forms/dymicForm",
       },
+      {
+        name: "表格中的表单",
+        path: "/forms/formInTable",
+        templatePath: "forms/formInTable",
+      },
     ],
   },
   {
