@@ -11,25 +11,44 @@
 </template>
 <script>
 import HaoFilters from "./HaoFilters.vue";
+
 export default {
   name: "HaoSearchTable",
   components: { HaoFilters },
   props: {
     filters: { type: Array, default: () => [] },
     columns: { type: Array, default: () => [] },
+    loadData: { type: Function, required: true },
+  },
+  data() {
+    return {
+      loading: false,
+      dataSource: [],
+    };
   },
   computed: {
     formFilters() {
-      return [
-        { type: "input", prop: "userName", label: "用户名" },
-        { type: "number", prop: "number1", label: "数字输入框1" },
-        { type: "select", prop: "select1", label: "选择框1" },
-        { type: "cascader", prop: "cascader1", label: "级联选择框1" },
-        { type: "year", prop: "year1", label: "年份选择1" },
-      ];
+      return this.filters?.length
+        ? this.filters
+        : this.columns
+            .filter((v) => v.filterConfig)
+            .map((f) => ({
+              label: f.title,
+              prop: f.dataIndex || f.key,
+              ...f.filterConfig,
+            }));
     },
     tableColumns() {
-      return [];
+      return this.columns
+        .filter((v) => !v.onlyInFilter)
+        .map((v) => {
+          return { ...v };
+        });
+    },
+  },
+  methods: {
+    updateList(changeFilters = {}) {
+      console.log(changeFilters, "------------changeFilters");
     },
   },
 };
@@ -40,7 +59,7 @@ export default {
   display: flex;
   flex-direction: column;
   .hao-search-header {
-    height: 120px;
+    // height: 120px;
     // background-color: lightcoral;
   }
   .hao-search-main {

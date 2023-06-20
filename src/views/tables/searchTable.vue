@@ -1,7 +1,7 @@
 // 带搜索表格
 <template>
   <div class="search-table-page">
-    <hao-search-table />
+    <hao-search-table :columns="columns" :loadData="loadData" />
   </div>
 </template>
 <script>
@@ -13,13 +13,16 @@ const columns = [
     title: "姓名",
     filterConfig: {
       type: "input",
+      label: "输入框",
+      initialValue: "张三",
     },
   },
   {
     dataIndex: "age",
     title: "年龄",
     filterConfig: {
-      type: "inputNumber",
+      type: "number",
+      label: "数字",
     },
   },
   {
@@ -27,20 +30,25 @@ const columns = [
     title: "年份",
     filterConfig: {
       type: "yearPicker",
+      label: "年选择",
+      initialValue: '2023'
     },
   },
   {
-    dataIndex: "year",
+    dataIndex: "month",
     title: "月份",
     filterConfig: {
       type: "monthPicker",
+      label: "月份选择",
     },
   },
   {
     dataIndex: "city",
-    title: "城市-选择框",
+    title: "城市",
     filterConfig: {
       type: "select",
+      label: "城市选择框",
+      initialValue: "01",
       options: [
         { label: "北京", value: "01" },
         { label: "武汉", value: "02" },
