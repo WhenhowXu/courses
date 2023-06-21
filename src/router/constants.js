@@ -1,6 +1,6 @@
 export const INSERT_ROUTES = [
   {
-    name: "Forms",
+    name: "表单",
     icon: "form",
     path: "forms",
     children: [
@@ -22,7 +22,7 @@ export const INSERT_ROUTES = [
     ],
   },
   {
-    name: "Tables",
+    name: "表格",
     icon: "table",
     path: "table",
     children: [

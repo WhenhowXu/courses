@@ -206,7 +206,6 @@ export default {
       mockList(rowSize).then((data) => {
         const startTime = Date.now();
         const $table = this.$refs.xTable;
-        console.log($table, data);
         if ($table) {
           $table.reloadData(data).then(() => {
             VXETable.modal.message({

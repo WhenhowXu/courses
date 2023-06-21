@@ -1,14 +1,13 @@
-import "@/styles/themes/index.less";
 import VueRouter from "vue-router";
 import Vue from "vue";
 import App from "./App.vue";
-import "ant-design-vue/dist/antd.css";
 import Antd from "ant-design-vue";
 import store from "@/store";
 import router from "@/router";
 import directives from "@/directives";
 import HaoFields from "@/components/HaoFields";
 import HaoSearchTable from "@/components/HaoSearchTable";
+import "@/styles/themes/index.less";
 require("@/apiMock");
 
 Vue.use(VueRouter);

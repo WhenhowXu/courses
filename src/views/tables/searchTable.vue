@@ -1,15 +1,15 @@
 // 带搜索表格
 <template>
   <div class="search-table-page">
-    <hao-search-table :columns="columns" :loadData="loadData" />
+    <hao-search-table rowKey="id" :columns="columns" :loadData="loadData" />
   </div>
 </template>
 <script>
-import { getUserList } from "@/api/searchTable";
+import { getUsers } from "@/api/tables";
 
 const columns = [
   {
-    dataIndex: "name",
+    dataIndex: "userName",
     title: "姓名",
     filterConfig: {
       type: "input",
@@ -31,7 +31,7 @@ const columns = [
     filterConfig: {
       type: "yearPicker",
       label: "年选择",
-      initialValue: '2023'
+      initialValue: "2023",
     },
   },
   {
@@ -71,11 +71,9 @@ export default {
         dataSource: [],
       };
       try {
-        const res = await getUserList(params);
-        if (res.status === "success") {
-          result.total = res.data?.total || 0;
-          result.dataSource = res.data?.records || [];
-        }
+        const res = await getUsers(params);
+        result.total = res?.total || 0;
+        result.list = res?.list || [];
       } catch (err) {
         console.log(err);
       }
@@ -87,6 +85,5 @@ export default {
 <style lang="less" scoped>
 .search-table-page {
   height: 100%;
-  background-color: lightblue;
 }
 </style>

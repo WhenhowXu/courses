@@ -44,7 +44,6 @@ export default {
       }
     },
     handleEdit(key, action) {
-      console.log(key, action);
       switch (action) {
         case "remove":
           this.handleRemoveTab(key);

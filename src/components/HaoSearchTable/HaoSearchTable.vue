@@ -1,10 +1,16 @@
 <template>
   <div class="hao-search-table-wrapper">
     <div class="hao-search-header">
-      <HaoFilters :filters="formFilters" />
+      <HaoFilters :filters="formFilters" @init="handleInit" />
     </div>
     <div class="hao-search-main">
-      <a-table :columns="tableColumns"></a-table>
+      <a-table
+        :loading="loading"
+        :columns="tableColumns"
+        :dataSource="dataSource"
+        v-bind="$attrs"
+        v-on="$listeners"
+      ></a-table>
     </div>
     <div class="hao-search-footer"></div>
   </div>
@@ -23,6 +29,7 @@ export default {
   data() {
     return {
       loading: false,
+      total: 0,
       dataSource: [],
     };
   },
@@ -48,7 +55,21 @@ export default {
   },
   methods: {
     updateList(changeFilters = {}) {
-      console.log(changeFilters, "------------changeFilters");
+      if (typeof this.loadData === "function") {
+        const params = { ...changeFilters };
+        this.loading = true;
+        this.loadData(params)
+          .then((res) => {
+            this.total = res.total || 0;
+            this.dataSource = res.list || [];
+          })
+          .finally(() => {
+            this.loading = false;
+          });
+      }
+    },
+    handleInit(values) {
+      this.updateList(values);
     },
   },
 };

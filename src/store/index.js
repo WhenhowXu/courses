@@ -40,9 +40,9 @@ export default new Vuex.Store({
   actions: {
     queryPermissions({ commit }) {
       return new Promise((resolve) => {
-        getMenus().then((res) => {
-          commit("setPermissions", { menus: res.data });
-          resolve(res.data);
+        getMenus().then((data) => {
+          commit("setPermissions", { menus: data });
+          resolve(data);
         });
       });
     },
