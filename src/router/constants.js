@@ -1,5 +1,17 @@
 export const INSERT_ROUTES = [
   {
+    name: "Vue Apis",
+    icon: "book",
+    path: "vue-demos",
+    children: [
+      {
+        name: "provide inject",
+        path: "/vue-demos/provide-inject",
+        templatePath: "vueDemos/provideInject",
+      },
+    ],
+  },
+  {
     name: "表单",
     icon: "form",
     path: "forms",
