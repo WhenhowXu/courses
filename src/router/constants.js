@@ -5,6 +5,11 @@ export const INSERT_ROUTES = [
     path: "vue-demos",
     children: [
       {
+        name: "slot",
+        path: "/vue-demos/slot",
+        templatePath: "vueDemos/slotDemo",
+      },
+      {
         name: "provide inject",
         path: "/vue-demos/provide-inject",
         templatePath: "vueDemos/provideInject",
