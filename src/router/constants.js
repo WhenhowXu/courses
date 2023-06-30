@@ -1,26 +1,14 @@
 export const INSERT_ROUTES = [
   {
-    name: "Vue Apis",
-    icon: "book",
-    path: "vue-demos",
-    children: [
-      {
-        name: "slot",
-        path: "/vue-demos/slot",
-        templatePath: "vueDemos/slotDemo",
-      },
-      {
-        name: "provide inject",
-        path: "/vue-demos/provide-inject",
-        templatePath: "vueDemos/provideInject",
-      },
-    ],
-  },
-  {
     name: "表单",
     icon: "form",
     path: "forms",
     children: [
+      {
+        name: "富文本编辑",
+        path: "/forms/richText",
+        templatePath: "forms/richText",
+      },
       {
         name: "自定义表单",
         path: "/forms/haoFields",
@@ -35,6 +23,33 @@ export const INSERT_ROUTES = [
         name: "表格中的表单",
         path: "/forms/formInTable",
         templatePath: "forms/formInTable",
+      },
+    ],
+  },
+  {
+    name: "Vue Apis",
+    icon: "book",
+    path: "vue-demos",
+    children: [
+      {
+        name: "生命周期",
+        path: "/vue-demos/lifeCycle",
+        templatePath: "vueDemos/lifeCycle",
+      },
+      {
+        name: "directives",
+        path: "/vue-demos/directives",
+        templatePath: "vueDemos/directives",
+      },
+      {
+        name: "slot",
+        path: "/vue-demos/slot",
+        templatePath: "vueDemos/slotDemo",
+      },
+      {
+        name: "provide inject",
+        path: "/vue-demos/provide-inject",
+        templatePath: "vueDemos/provideInject",
       },
     ],
   },

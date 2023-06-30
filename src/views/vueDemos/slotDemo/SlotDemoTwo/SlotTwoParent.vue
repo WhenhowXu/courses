@@ -2,6 +2,7 @@
   <div>
     <slot :text="'message for default slot'"></slot>
     <slot name="title" :text="'message for default slot title'"></slot>
+    <slot name="other" :text="'message for default slot other'"></slot>
   </div>
 </template>
 <script>
