@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h3>1、vue-ueditor-wrap</h3>
     <VueUeditorWrap v-model="editorHtmlData" :config="editorConfig" />
   </div>
 </template>
