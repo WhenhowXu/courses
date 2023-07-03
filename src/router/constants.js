@@ -1,5 +1,17 @@
 export const INSERT_ROUTES = [
   {
+    name: "ThreeJS",
+    icon: "reconciliation",
+    path: "three-js",
+    children: [
+      {
+        name: "简单示例",
+        path: "/three/test-demo",
+        templatePath: "three/threeTestDemo",
+      },
+    ],
+  },
+  {
     name: "表单",
     icon: "form",
     path: "forms",
