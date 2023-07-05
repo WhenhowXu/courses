@@ -63,6 +63,11 @@ export const INSERT_ROUTES = [
         path: "/vue-demos/provide-inject",
         templatePath: "vueDemos/provideInject",
       },
+      {
+        name: "filter",
+        path: "/vue-demos/filter",
+        templatePath: "vueDemos/filterDemo",
+      },
     ],
   },
   {

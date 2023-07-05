@@ -15,6 +15,16 @@ Vue.use(directives);
 Vue.use(Antd);
 Vue.use(HaoFields);
 Vue.use(HaoSearchTable);
+Vue.filter('numberFormat', (value, precision = 0) => {
+  if (typeof value === "string") {
+    let n = Number(value);
+    return isNaN(n) ? "--" : n.toFixed(precision);
+  } else if (typeof value === "number") {
+    return value.toFixed(precision);
+  } else {
+    return "--";
+  }
+});
 
 Vue.config.productionTip = false;
 
