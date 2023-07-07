@@ -1,15 +1,21 @@
 // 带搜索表格
 <template>
   <div class="search-table-page">
-    <hao-search-table rowKey="id" :columns="columns" :loadData="loadData" />
+    <hao-search-table
+      rowKey="id"
+      :columns="columns"
+      :loadData="loadData"
+      :turnConditionsToParams="turnConditionsToParams"
+    />
   </div>
 </template>
 <script>
-import { getUsers } from "@/api/tables";
+import { getUserList } from "./mock";
 
 const columns = [
   {
     dataIndex: "userName",
+    width: 120,
     title: "姓名",
     filterConfig: {
       type: "input",
@@ -20,6 +26,7 @@ const columns = [
   {
     dataIndex: "age",
     title: "年龄",
+    width: 100,
     filterConfig: {
       type: "number",
       label: "数字",
@@ -28,6 +35,7 @@ const columns = [
   {
     dataIndex: "year",
     title: "年份",
+    width: 100,
     filterConfig: {
       type: "yearPicker",
       label: "年选择",
@@ -37,6 +45,7 @@ const columns = [
   {
     dataIndex: "month",
     title: "月份",
+    width: 100,
     filterConfig: {
       type: "monthPicker",
       label: "月份选择",
@@ -45,6 +54,7 @@ const columns = [
   {
     dataIndex: "city",
     title: "城市",
+    width: 100,
     filterConfig: {
       type: "select",
       label: "城市选择框",
@@ -55,6 +65,18 @@ const columns = [
       ],
     },
   },
+  {
+    title: "备注",
+    dataIndex: "remark",
+    width: 140,
+    ellipsis: true,
+  },
+  {
+    title: "操作",
+    dataIndex: "actions",
+    width: 120,
+    scopedSlots: { customRender: "actions" },
+  },
 ];
 export default {
   name: "searchTable",
@@ -64,19 +86,19 @@ export default {
     };
   },
   methods: {
-    async loadData(params, conditions) {
-      console.log(params, conditions);
+    turnConditionsToParams(conditions) {
+      return {
+        pageSize: conditions.pageSize,
+      };
+    },
+    async loadData(params) {
       let result = {
         total: 0,
         dataSource: [],
       };
-      try {
-        const res = await getUsers(params);
-        result.total = res?.total || 0;
-        result.list = res?.list || [];
-      } catch (err) {
-        console.log(err);
-      }
+      const res = await getUserList(params);
+      result.total = res?.data?.total || 0;
+      result.list = res?.data?.records || [];
       return result;
     },
   },

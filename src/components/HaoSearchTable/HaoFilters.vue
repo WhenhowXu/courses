@@ -1,11 +1,12 @@
 <template>
   <a-form-model class="hao-filters-wrapper" ref="formRef" :model="model">
-    <a-row type="flex">
+    <ul class="hao-filters-ul">
       <template v-for="(filter, index) in filters">
-        <a-col
+        <li
           v-show="folded ? index <= maxShowIndex : true"
           :key="index"
           :span="filter.span || 6"
+          class="hao-filter-item"
         >
           <a-form-model-item :label="filter.label" v-bind="formItemLayout">
             <a-input
@@ -37,9 +38,9 @@
               v-model="model[filter.prop]"
             />
           </a-form-model-item>
-        </a-col>
+        </li>
       </template>
-      <a-col flex="1" align="middle" justify="end" style="text-align: right">
+      <li class="hao-filter-search-item">
         <a-space>
           <a-button type="primary" @click="handleSearch">查询</a-button>
           <a-button @click="handleReset">重置</a-button>
@@ -50,8 +51,8 @@
             >{{ folded ? "展开" : "收起" }}</a-button
           >
         </a-space>
-      </a-col>
-    </a-row>
+      </li>
+    </ul>
   </a-form-model>
 </template>
 <script>
@@ -77,8 +78,13 @@ export default {
   },
   methods: {
     setOptionsMap() {},
-    handleSearch() {},
-    handleReset() {},
+    handleSearch() {
+      this.$emit("search");
+    },
+    handleReset() {
+      Object.assign(this.model, this.initialValues);
+      this.$emit("search");
+    },
     init() {
       const _initialPromises = [],
         _initialValues = {},
@@ -126,5 +132,22 @@ export default {
 <style lang="less" scoped>
 .hao-filters-wrapper {
   padding: 12px;
+
+  .hao-filters-ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .hao-filter-item {
+      width: 25%;
+    }
+    .hao-filter-search-item {
+      flex: 1;
+      text-align: right;
+      align-items: center;
+    }
+    /deep/.ant-form-item {
+      margin-bottom: 12px;
+    }
+  }
 }
 </style>

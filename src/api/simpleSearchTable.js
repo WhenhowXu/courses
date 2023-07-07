@@ -1,4 +1,4 @@
-import { generateApi } from "@/utlis";
+import { generateApi } from "@/utils";
 
 let list = [];
 for (let i = 0; i < 100; i++) {

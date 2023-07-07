@@ -1,4 +1,4 @@
-import { generateApi } from "@/utlis";
+import { generateApi } from "@/utils";
 const LIST = Array.from({ length: 1000 });
 export const getUserList = (params) => {
   return generateApi({
