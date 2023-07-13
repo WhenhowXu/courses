@@ -2,7 +2,9 @@
   <div id="app">
     <a-config-provider :locale="locale">
       <transition name="fade" mode="out-in">
-        <router-view></router-view>
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
       </transition>
     </a-config-provider>
   </div>
