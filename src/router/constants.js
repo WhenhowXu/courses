@@ -1,5 +1,17 @@
 export const INSERT_ROUTES = [
   {
+    name: "Tree",
+    icon: "share-alt",
+    path: "tree",
+    children: [
+      {
+        name: "Search Tree",
+        path: "/tree/tree-search",
+        templatePath: "tree/treeSearch",
+      },
+    ],
+  },
+  {
     name: "表格",
     icon: "table",
     path: "table",
