@@ -34,3 +34,23 @@ export const filterTreeData = (
       }, [])
     : treeData;
 };
+
+function getKeys(treeData, keys) {
+  if (treeData?.length) {
+    treeData.forEach((v) => {
+      keys.push(v.key);
+      if (v.children?.length) {
+        getKeys(v.children, keys);
+      }
+    });
+  }
+}
+export const getAllExpandKeys = (treeData) => {
+  if (treeData.length) {
+    const keys = [];
+    getKeys(treeData, keys);
+    return keys;
+  } else {
+    return [];
+  }
+};

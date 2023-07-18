@@ -1,12 +1,17 @@
 <template>
-  <div class="tree-search-wrapper">
-    <a-input-search placeholder="请输入关键字搜索" v-model="searchWords" />
-    <a-tree checkable defaultExpandAll :tree-data="treeData" />
-  </div>
+  <CollapsibleSidebar>
+    <template #sidebar>
+      <div class="tree-search-wrapper">
+        <a-input-search placeholder="请输入关键字搜索" v-model="searchWords" />
+        <a-tree checkable defaultExpandAll :tree-data="treeData" />
+      </div>
+    </template>
+  </CollapsibleSidebar>
 </template>
 <script>
 import { filterTreeData } from "@/utils/tree";
 import debounce from "lodash/debounce";
+import CollapsibleSidebar from "@/components/CollapsibleSidebar";
 
 const treeData = [
   {
@@ -53,6 +58,7 @@ const treeData = [
 ];
 
 export default {
+  components: { CollapsibleSidebar },
   data() {
     return {
       allTreeData: treeData,
