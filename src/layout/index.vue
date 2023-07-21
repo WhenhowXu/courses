@@ -6,7 +6,9 @@
       <div class="app-content">
         <MenuTabs />
         <div class="app-tab-page" style="flex: 1">
-          <slot></slot>
+          <transition name="fade-transform" mode="out-in">
+            <router-view />
+          </transition>
         </div>
       </div>
     </div>

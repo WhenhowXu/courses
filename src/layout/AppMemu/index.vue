@@ -1,11 +1,11 @@
 <template>
-  <div class="app-side-menu">
+  <div :class="['app-side-menu', fold ? 'fold' : 'unfold']">
     <a-menu
-      style="width: 200px"
       :selectedKeys.sync="selectedKeys"
       :openKeys.sync="openKeys"
       mode="inline"
       :theme="menuThemeKey"
+      :inline-collapsed="fold"
       @select="handleSelect"
     >
       <template v-for="item in menus">
@@ -45,7 +45,11 @@ export default {
 
   computed: {
     ...mapGetters("settings", ["menuThemeKey"]),
-    ...mapState(["menus", "menusMap"]),
+    ...mapState({
+      menus: (state) => state.menus,
+      menusMap: (state) => state.menusMap,
+      fold: (state) => state.settings.fold,
+    }),
   },
   methods: {
     getOpenKeys(key, menusMap) {
@@ -84,5 +88,8 @@ export default {
 <style lang="less" scoped>
 .app-side-menu {
   height: 100%;
+  &.unfold {
+    width: 260px;
+  }
 }
 </style>

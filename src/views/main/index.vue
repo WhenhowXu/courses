@@ -1,9 +1,5 @@
 <template>
-  <app-layout>
-    <transition name="fade-transform" mode="out-in">
-      <router-view :key="key"></router-view>
-    </transition>
-  </app-layout>
+  <app-layout />
 </template>
 
 <script>

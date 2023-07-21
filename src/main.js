@@ -7,7 +7,8 @@ import router from "@/router";
 import directives from "@/directives";
 import HaoFields from "@/components/HaoFields";
 import HaoSearchTable from "@/components/HaoSearchTable";
-import "@/styles/themes/index.less";
+import "@/styles/index.less";
+
 require("@/apiMock");
 
 Vue.use(VueRouter);
@@ -15,7 +16,7 @@ Vue.use(directives);
 Vue.use(Antd);
 Vue.use(HaoFields);
 Vue.use(HaoSearchTable);
-Vue.filter('numberFormat', (value, precision = 0) => {
+Vue.filter("numberFormat", (value, precision = 0) => {
   if (typeof value === "string") {
     let n = Number(value);
     return isNaN(n) ? "--" : n.toFixed(precision);

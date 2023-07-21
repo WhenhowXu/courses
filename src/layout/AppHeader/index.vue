@@ -1,6 +1,9 @@
 <template>
   <div class="app-header">
-    <h3 class="app-header-title">{{ title }}</h3>
+    <a-space align="center">
+      <h3 v-show="!fold" class="app-header-title">{{ title }}</h3>
+      <HeaderSideToggle />
+    </a-space>
     <a-space class="tool-bar-wrapper">
       <ThemeChanger />
       <FullScreen />
@@ -12,16 +15,22 @@
 import FullScreen from "./FullScreen";
 import ThemeChanger from "./ThemeChanger";
 import HeaderAvatar from "./HeaderAvatar.vue";
+import HeaderSideToggle from "./HeaderSideToggle.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "AppHeader",
   components: {
     FullScreen,
     ThemeChanger,
-    HeaderAvatar
+    HeaderAvatar,
+    HeaderSideToggle,
   },
   props: {
     title: String,
+  },
+  computed: {
+    ...mapState({ fold: (state) => state.settings.fold }),
   },
 };
 </script>
