@@ -1,8 +1,8 @@
 <template>
   <app-layout>
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
+    <transition name="fade-transform" mode="out-in">
+      <router-view :key="key"></router-view>
+    </transition>
   </app-layout>
 </template>
 
@@ -12,5 +12,10 @@ import AppLayout from "@/layout";
 export default {
   name: "MainPage",
   components: { AppLayout },
+  computed: {
+    key() {
+      return this.$route.path;
+    },
+  },
 };
 </script>

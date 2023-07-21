@@ -1,11 +1,7 @@
 <template>
   <div id="app">
     <a-config-provider :locale="locale">
-      <transition name="fade" mode="out-in">
-        <keep-alive>
-          <router-view></router-view>
-        </keep-alive>
-      </transition>
+      <router-view></router-view>
     </a-config-provider>
   </div>
 </template>

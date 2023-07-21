@@ -1,7 +1,9 @@
 import Vuex from "vuex";
 import Vue from "vue";
 import settings from "./settings";
+import auth from "./auth";
 import { getMenus } from "@/api/plaform";
+
 function getMenusMap(menus) {
   const obj = {};
   function storeMenuMap(menus, storeObj, parentPath) {
@@ -23,12 +25,15 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   modules: {
     settings,
+    auth,
   },
   state: {
-    isLogin: true,
     menus: [],
     menusMap: {},
     buttons: [],
+  },
+  getters: {
+    isLogin: (state) => state.auth.isLogin,
   },
   mutations: {
     setPermissions(state, data) {
@@ -41,6 +46,7 @@ export default new Vuex.Store({
     queryPermissions({ commit }) {
       return new Promise((resolve) => {
         getMenus().then((data) => {
+          console.log(data, "----------------");
           commit("setPermissions", { menus: data });
           resolve(data);
         });

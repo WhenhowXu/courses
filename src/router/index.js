@@ -4,6 +4,7 @@ import { lazyLoad } from "./utils";
 import Login from "../views/login/index.vue";
 import NotFound from "../views/notFound/index.vue";
 import store from "@/store";
+import { getToken } from "@/utils/auth";
 
 // 默认路由
 const DEFAULT_ROUTERS = [
@@ -57,7 +58,8 @@ function getPermissions($router) {
 }
 
 router.beforeEach(async (to, from, next) => {
-  if (store.state.isLogin) {
+  const token = getToken();
+  if (token) {
     if (to.path === "/login") {
       getPermissions(router).then(() => {
         next({ path: "/" });
@@ -68,7 +70,7 @@ router.beforeEach(async (to, from, next) => {
       });
     }
   } else {
-    store.commit("logout").then(() => {
+    store.dispatch("auth/logout").then(() => {
       next({ path: "/login" });
     });
   }

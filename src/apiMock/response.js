@@ -1,5 +1,10 @@
-export function SuccessResponse(data, { code = 0, message = "success" } = {}) {
-  this.code = code;
-  this.message = message;
-  this.data = data;
+export function getResponse(
+  data = null,
+  { code = 0, message = "success" } = {}
+) {
+  return {
+    code,
+    data,
+    message,
+  };
 }

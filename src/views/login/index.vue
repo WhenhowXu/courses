@@ -7,16 +7,13 @@
           <a-input
             v-model="form.userName"
             size="large"
-            autocomplete="off"
             placeholder="输入用户名"
           />
         </a-form-model-item>
         <a-form-model-item prop="password">
-          <a-input
+          <a-input-password
             v-model="form.password"
             size="large"
-            type="password"
-            autocomplete="off"
             placeholder="输入密码"
             @keyup.enter="handleSubmit"
           />
@@ -25,7 +22,11 @@
           <a-checkbox v-model="form.remember">记住密码 </a-checkbox>
         </a-form-model-item>
         <a-form-model-item>
-          <a-button type="primary" size="large" style="width: 100%"
+          <a-button
+            type="primary"
+            size="large"
+            style="width: 100%"
+            @click="handleSubmit"
             >登录</a-button
           >
         </a-form-model-item>
@@ -38,8 +39,19 @@ export default {
   name: "LoginPage",
   data() {
     return {
-      form: { userName: undefined, password: undefined, remember: false },
+      form: {
+        userName: undefined,
+        password: undefined,
+        remember: false,
+      },
     };
+  },
+  methods: {
+    handleSubmit() {
+      this.$store.dispatch("auth/login", this.form).then(() => {
+        this.$router.replace("/");
+      });
+    },
   },
 };
 </script>
