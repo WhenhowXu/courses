@@ -12,49 +12,25 @@ export const INSERT_ROUTES = [
     ],
   },
   {
-    name: "表格",
+    name: "Table",
     icon: "table",
     path: "table",
     children: [
       {
-        name: "表格滚动",
-        icon: "table",
-        path: "/tables/scrollTable",
-        templatePath: "tables/scrollTable",
-      },
-      {
-        name: "带搜索表格",
+        name: "Searchable Table",
         icon: "table",
         path: "/tables/searchTable",
         templatePath: "tables/searchTable",
       },
-      {
-        name: "大数据表格",
-        icon: "table",
-        path: "/tables/test02",
-        templatePath: "tables/test2",
-      },
     ],
   },
   {
-    name: "ThreeJS",
-    icon: "reconciliation",
-    path: "three-js",
-    children: [
-      {
-        name: "简单示例",
-        path: "/three/test-demo",
-        templatePath: "three/threeTestDemo",
-      },
-    ],
-  },
-  {
-    name: "表单",
+    name: "Form",
     icon: "form",
     path: "forms",
     children: [
       {
-        name: "富文本编辑",
+        name: "Rich Text Editor",
         path: "/forms/richText",
         templatePath: "forms/richText",
       },
@@ -76,34 +52,14 @@ export const INSERT_ROUTES = [
     ],
   },
   {
-    name: "Vue Apis",
-    icon: "book",
-    path: "vue-demos",
+    name: "Form Fields",
+    icon: "form",
+    path: "forms-fields",
     children: [
       {
-        name: "生命周期",
-        path: "/vue-demos/lifeCycle",
-        templatePath: "vueDemos/lifeCycle",
-      },
-      {
-        name: "directives",
-        path: "/vue-demos/directives",
-        templatePath: "vueDemos/directives",
-      },
-      {
-        name: "slot",
-        path: "/vue-demos/slot",
-        templatePath: "vueDemos/slotDemo",
-      },
-      {
-        name: "provide inject",
-        path: "/vue-demos/provide-inject",
-        templatePath: "vueDemos/provideInject",
-      },
-      {
-        name: "filter",
-        path: "/vue-demos/filter",
-        templatePath: "vueDemos/filterDemo",
+        name: "Date Picker",
+        path: "/form-fields/date-picker",
+        templatePath: "formFields/datePicker",
       },
     ],
   },

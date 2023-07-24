@@ -2,7 +2,7 @@ import { getLogionElements } from "@/api/plaform";
 export default {
   namespaced: true,
   state: {
-    fold: true, // 侧标是否收起
+    fold: false, // 侧标是否收起
     loginElements: {},
     themeKey: "dark",
     themes: [
