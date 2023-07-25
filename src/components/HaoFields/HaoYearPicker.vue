@@ -15,8 +15,6 @@
 </template>
 
 <script>
-const formatValue = (value) =>
-  value && typeof value.format === "function" ? value.format("YYYY") : value;
 export default {
   name: "HaoYearPicker",
   data() {
@@ -29,15 +27,18 @@ export default {
     event: "change",
   },
   methods: {
+    formatYear(value){
+      return value && typeof value.format === "function" ? value.format("YYYY") : value;
+    },
     handleOpenChange(status) {
       this.open = status;
     },
     handlePanelChange(value) {
-      this.$emit("change", formatValue(value));
+      this.$emit("change", this.formatYear(value));
       this.open = false;
     },
     handleChange(date) {
-      this.$emit("change", formatValue(date));
+      this.$emit("change", this.formatYear(date));
     },
   },
 };

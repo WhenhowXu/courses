@@ -1,10 +1,13 @@
+import HaoRangeContainer from "./HaoRangeContainer";
 import HaoYearPicker from "./HaoYearPicker";
-import HaoMonthPicker from "./HaoMonthPicker";
 import HaoNumberRange from "./HaoNumberRange";
+import HaoRangeMonthPicker from "./HaoRangeMonthPicker";
+
 const HaoFields = {
+  HaoRangeContainer,
   HaoYearPicker,
-  HaoMonthPicker,
   HaoNumberRange,
+  HaoRangeMonthPicker,
 };
 HaoFields.install = (Vue) => {
   Object.values(HaoFields).forEach((c) => {

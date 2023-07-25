@@ -1,26 +1,35 @@
 <template>
   <HaoRangeContainer>
-    <a-input-number
+    <a-month-picker
       slot="left"
       v-model="startValue"
-      :placeholder="placeholder[0]"
       style="width: 100%"
+      :placeholder="placeholder[0]"
+      :disabledDate="disabledStart"
     />
-    <a-input-number
+    <a-month-picker
       slot="right"
       v-model="endValue"
-      :placeholder="placeholder[1]"
       style="width: 100%"
+      :placeholder="placeholder[1]"
+      :disabledDate="disabledEnd"
     />
   </HaoRangeContainer>
 </template>
+
 <script>
 import HaoRangeContainer from "./HaoRangeContainer.vue";
+
 export default {
-  name: "HaoNumberRange",
+  name: "HaoRangeMonthPicker",
   components: { HaoRangeContainer },
+  data() {
+    return {
+      open: false,
+    };
+  },
   props: {
-    placeholder: { type: Array, default: () => ["开始数值", "结束数值"] },
+    placeholder: { type: Array, default: () => ["开始月份", "结束月份"] },
     max: Number,
     min: Number,
   },
@@ -46,17 +55,21 @@ export default {
       },
     },
   },
+  methods: {
+    disabledStart(start) {
+      if (this.endValue) {
+        return start.startOf("month") > this.endValue.startOf("month");
+      } else {
+        return false;
+      }
+    },
+    disabledEnd(end) {
+      if (this.startValue) {
+        return this.startValue.startOf("month") > end.startOf("month");
+      } else {
+        return false;
+      }
+    },
+  },
 };
 </script>
-<style lang="less" scoped>
-.range-number-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  .ant-input-number {
-    flex: 1;
-  }
-}
-</style>
