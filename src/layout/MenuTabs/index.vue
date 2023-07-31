@@ -39,6 +39,7 @@ export default {
         return;
       }
       this.pageList = this.pageList.filter((v) => v.path !== key);
+      this.linkList = this.linkList.filter((v) => v !== key);
       if (this.activePage === key) {
         this.activePage = this.pageList[this.pageList.length - 1]?.path;
       }
@@ -54,6 +55,7 @@ export default {
   watch: {
     $route: function (newRoute) {
       let matcheds = newRoute["matched"][1];
+      console.log(matcheds, "------------matcheds");
       this.activePage = matcheds["path"];
       if (!this.multipage) {
         this.linkList = [newRoute.fullPath];

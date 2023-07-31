@@ -2,7 +2,7 @@
   <div class="app-container">
     <AppHeader title="VUE2 DEMOS" />
     <div class="app-main">
-      <AppMemu />
+      <AppMenu />
       <div class="app-content">
         <MenuTabs />
         <div class="app-tab-page" style="flex: 1">
@@ -17,12 +17,12 @@
 
 <script>
 import AppHeader from "./AppHeader";
-import AppMemu from "./AppMemu";
+import AppMenu from "./AppMenu";
 import MenuTabs from "./MenuTabs";
 
 export default {
   name: "AppLayout",
-  components: { AppHeader, AppMemu, MenuTabs },
+  components: { AppHeader, AppMenu, MenuTabs },
   data() {
     return {
       collapsed: false,
