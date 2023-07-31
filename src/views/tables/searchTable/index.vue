@@ -3,10 +3,23 @@
   <div class="search-table-page">
     <hao-search-table
       rowKey="id"
+      enableOrder
+      :orderColumn="{ width: 100 }"
       :columns="columns"
       :loadData="loadData"
       :turnConditionsToParams="turnConditionsToParams"
-    />
+    >
+      <template v-slot:actions="slotProps">
+        <a-space>
+          <hao-link-button :onClick="handleEdit.bind(this, slotProps)"
+            >删除</hao-link-button
+          >
+          <hao-link-button :onClick="openDetailModal.bind(this, slotProps)"
+            >详情</hao-link-button
+          >
+        </a-space>
+      </template>
+    </hao-search-table>
   </div>
 </template>
 <script>
@@ -100,6 +113,18 @@ export default {
       result.total = res?.data?.total || 0;
       result.list = res?.data?.records || [];
       return result;
+    },
+    openDetailModal(record) {
+      console.log(record);
+    },
+    handleEdit() {
+      return new Promise((resolve) => {
+        let timer = setTimeout(() => {
+          resolve();
+          this.$message.success("删除成功");
+          clearTimeout(timer);
+        }, 2000);
+      });
     },
   },
 };

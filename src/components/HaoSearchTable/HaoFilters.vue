@@ -46,6 +46,7 @@
           <a-button @click="handleReset">重置</a-button>
           <a-button
             type="link"
+            size="small"
             :icon="folded ? 'down' : 'up'"
             @click="folded = !folded"
             >{{ folded ? "展开" : "收起" }}</a-button

@@ -17,7 +17,14 @@
         v-on="$listeners"
         :pagination="false"
         :scroll="{ y: 500 }"
-      ></a-table>
+      >
+        <span slot="ORDER" slot-scope="text, record, index">{{
+          index + 1
+        }}</span>
+        <template v-for="name in Object.keys($scopedSlots)" :slot="name"
+          ><slot :name="name"></slot
+        ></template>
+      </a-table>
     </div>
     <div class="hao-search-footer">
       <HaoPagination
@@ -40,6 +47,16 @@ export default {
   name: "HaoSearchTable",
   components: { HaoFilters, HaoPagination },
   props: {
+    enableOrder: { type: Boolean, default: true }, // 开启序号列
+    orderColumnProps: {
+      type: Object,
+      default: () => ({
+        title: "序号",
+        dataIndex: "ORDER",
+        width: 100,
+        scopedSlots: { customRender: "ORDER" },
+      }),
+    }, // 序号列配置
     filters: { type: Array, default: () => [] },
     columns: { type: Array, default: () => [] },
     loadData: { type: Function, required: true },
@@ -68,11 +85,17 @@ export default {
             }));
     },
     tableColumns() {
-      return this.columns
-        .filter((v) => !v.onlyInFilter)
-        .map((v) => {
-          return { ...v };
-        });
+      const orderColumn = this.enableOrder
+        ? [{ ...this.orderColumnProps }]
+        : [];
+      return [
+        ...orderColumn,
+        ...this.columns
+          .filter((v) => !v.onlyInFilter)
+          .map((v) => {
+            return { ...v };
+          }),
+      ];
     },
   },
   methods: {
@@ -107,6 +130,11 @@ export default {
       this.current = 1;
       this.updateList();
     },
+  },
+
+  created() {
+    console.log(this.$slots);
+    console.dir(this);
   },
 };
 </script>
