@@ -3,7 +3,18 @@
     <template #sidebar>
       <div class="tree-search-wrapper">
         <a-input-search placeholder="请输入关键字搜索" v-model="searchWords" />
-        <a-tree checkable defaultExpandAll :tree-data="treeData" />
+        <a-tree checkable defaultExpandAll :tree-data="treeData">
+          <span
+            slot="title"
+            slot-scope="slotProps"
+            v-hightLight="{
+              text: slotProps.title,
+              keyWords: searchWords,
+              hightLightStyle: 'background: orange;color: #fff',
+            }"
+            >{{ slotProps.title }}</span
+          >
+        </a-tree>
       </div>
     </template>
   </CollapsibleSidebar>
@@ -15,7 +26,7 @@ import CollapsibleSidebar from "@/components/CollapsibleSidebar";
 
 const treeData = [
   {
-    title: "消炎的储物戒指",
+    title: "叶敏的储物戒指",
     key: "0-0",
     children: [
       {
