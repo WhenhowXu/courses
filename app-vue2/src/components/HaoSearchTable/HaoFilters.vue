@@ -37,6 +37,11 @@
               style="width: 100%"
               v-model="model[filter.prop]"
             />
+            <a-range-picker
+              v-else-if="filter.type === 'rangePicker'"
+              style="width: 100%"
+              v-model="model[filter.prop]"
+            />
           </a-form-model-item>
         </li>
       </template>

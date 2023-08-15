@@ -1,5 +1,17 @@
 module.exports = [
   {
+    name: "管理中心",
+    icon: "share-alt",
+    path: "manage-center",
+    children: [
+      {
+        name: "用户管理",
+        path: "/manage-center/user-manage",
+        templatePath: "manageCenter/userManage",
+      },
+    ],
+  },
+  {
     name: "Tree",
     icon: "share-alt",
     path: "tree",

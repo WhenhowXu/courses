@@ -1,16 +1,15 @@
-const asyncWrapper = require("../middleware/async");
 const UserModel = require("../models/userModel");
 
-const getAllUsers = asyncWrapper(async (req, res) => {
-  UserModel.getAll({}, (err, data) => {
+const getUsers = (req, res) => {
+  UserModel.getAll(req.body, (err, data) => {
     if (err) {
-      res.send({ code: -1, message: err.message || "" });
+      res.status(500).send({ message: err.message || "服务异常" });
     } else {
-      res.send({ code: 0, message: "success", data });
+      res.send({ code: 0, data, message: "success" });
     }
   });
-});
+};
 
 module.exports = {
-  getAllUsers,
+  getUsers,
 };
