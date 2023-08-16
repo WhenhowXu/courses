@@ -8,6 +8,11 @@
       />
     </div>
     <div class="hao-search-main">
+      <HaoTableTitle v-if="titleProps" v-bind="titleProps">
+        <template slot="titleActions"
+          ><slot name="titleActions"></slot
+        ></template>
+      </HaoTableTitle>
       <a-table
         :loading="loading"
         :columns="tableColumns"
@@ -21,8 +26,16 @@
         <span slot="ORDER" slot-scope="text, record, index">{{
           index + 1
         }}</span>
-        <template v-for="name in Object.keys($scopedSlots)" :slot="name"
-          ><slot :name="name"></slot
+        <template
+          v-for="name in Object.keys($scopedSlots)"
+          :slot="name"
+          slot-scope="text, record, index"
+          ><slot
+            :name="name"
+            :text="text"
+            :record="record"
+            :index="index"
+          ></slot
         ></template>
       </a-table>
     </div>
@@ -42,10 +55,10 @@
 import HaoFilters from "./HaoFilters.vue";
 import { isFunction } from "@/utils/is";
 import HaoPagination from "./HaoPagination.vue";
-
+import HaoTableTitle from "./HaoTableTitle.vue";
 export default {
   name: "HaoSearchTable",
-  components: { HaoFilters, HaoPagination },
+  components: { HaoFilters, HaoPagination, HaoTableTitle },
   props: {
     enableOrder: { type: Boolean, default: true }, // 开启序号列
     orderColumnProps: {
@@ -62,6 +75,7 @@ export default {
     loadData: { type: Function, required: true },
     turnConditionsToParams: Function,
     pagination: { type: Object, default: () => ({}) },
+    titleProps: Object,
   },
   data() {
     return {

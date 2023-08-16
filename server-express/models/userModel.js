@@ -29,4 +29,34 @@ User.create = (newUser, result) => {
   });
 };
 
+User.update = (newUser, result) => {
+  sql.query(
+    "UPDATE users SET username = ?, update_time = ? WHERE user_id = ?",
+    [newUser.username, new Date(), newUser.user_id],
+    (err, res) => {
+      if (err) {
+        result(err, null);
+        return;
+      }
+      if (res.affectedRows === 0) {
+        result(new Error("用户不存在"));
+        return;
+      }
+      console.log("更新用户成功：", { userId: res.userId, ...newUser });
+      result(null, { userId: res.userId, ...newUser });
+    }
+  );
+};
+
+User.delete = (userId, result) => {
+  sql.query("DELETE FROM users WHERE user_id = ? ", userId, (err, res) => {
+    if (err) {
+      result(err, null);
+      return;
+    }
+    console.log("删除用户成功：", userId);
+    result(null, res);
+  });
+};
+
 module.exports = User;
