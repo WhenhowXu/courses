@@ -13,7 +13,7 @@ User.getAll = (data, result) => {
   const { size = 10, page = 1 } = data;
   queryByPage(sql, "users", page, size, (err, res) => {
     if (err) {
-      return result(null, err);
+      return result(err, null);
     }
     result(null, res);
   });
@@ -28,7 +28,6 @@ User.create = (newUser, result) => {
         result(err, null);
         return;
       }
-      console.log("新增用户成功：", { userId: res.userId, ...newUser });
       result(null, { userId: res.userId, ...newUser });
     }
   );

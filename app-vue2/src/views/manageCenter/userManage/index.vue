@@ -47,7 +47,7 @@ const columns = [
     },
   },
   {
-    dataIndex: "depend",
+    dataIndex: "company_name",
     width: 120,
     title: "公司",
   },

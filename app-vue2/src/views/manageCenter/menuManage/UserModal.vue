@@ -8,7 +8,7 @@
     >
       <a-form-model-item label="用户名" prop="username">
         <a-input v-model="form.username" />
-      </a-form-model-item>
+      </a-form-model-item>   
     </a-form-model>
   </a-modal>
 </template>
@@ -22,6 +22,7 @@ export default {
       title: "",
       form: {
         username: "",
+        company_name: "",
       },
       extraParams: {},
       rules: {

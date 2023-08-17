@@ -1,6 +1,6 @@
 <template>
   <a-dropdown>
-    <a-avatar icon="user" />
+    <a-avatar icon="user" :src="avatar" />
     <a-menu slot="overlay" @click="handleMenuClick">
       <a-menu-item v-for="action in actions" :key="action.key">
         {{ action.name }}
@@ -14,6 +14,7 @@ export default {
   data() {
     return {
       actions: [{ name: "退出登录", key: "logout" }],
+      avatar: 'http://localhost:3009/images/avatar.gif'
     };
   },
   methods: {

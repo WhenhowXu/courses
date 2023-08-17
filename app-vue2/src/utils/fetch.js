@@ -15,7 +15,7 @@ instance.interceptors.response.use((response) => {
     return res?.data;
   } else {
     message.error(res?.message || "请求异常，请稍后重试");
-    return Promise.reject(res.data);
+    return Promise.reject(res.message);
   }
 });
 export default instance;
