@@ -25,7 +25,7 @@
         :scroll="{ y: 500 }"
       >
         <span slot="ORDER" slot-scope="text, record, index">{{
-          index + 1
+          index | orderFormat(current, pageSize, isGlobalOrder)
         }}</span>
         <template
           v-for="name in Object.keys($scopedSlots)"
@@ -62,6 +62,7 @@ export default {
   components: { HaoFilters, HaoPagination, HaoTableTitle },
   props: {
     enableOrder: { type: Boolean, default: true }, // 开启序号列
+    isGlobalOrder: { type: Boolean, default: true }, // 序号根据页码累加
     hideFilters: { type: Boolean, default: false }, // 隐藏顶部筛选
     hideToggle: { type: Boolean, default: false },
     orderColumnProps: {
@@ -79,6 +80,11 @@ export default {
     turnConditionsToParams: Function,
     pagination: { type: Object, default: () => ({}) },
     titleProps: Object,
+  },
+  filters: {
+    orderFormat(index, page, size, isGlobalOrder) {
+      return isGlobalOrder ? (page - 1) * size + index + 1 : index + 1;
+    },
   },
   data() {
     return {
