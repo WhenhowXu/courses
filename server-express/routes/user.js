@@ -6,6 +6,7 @@ router.route("/list").post(User.getUsers);
 router.route("/create").post(User.createUser);
 router.route("/delete").delete(User.deleteUser);
 router.route("/update").post(User.updateUser);
+router.route("/detail").get(User.getUserDetail);
 
 
 module.exports = router;

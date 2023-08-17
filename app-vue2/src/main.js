@@ -1,7 +1,7 @@
 import VueRouter from "vue-router";
 import Vue from "vue";
 import App from "./App.vue";
-import Antd from "ant-design-vue";
+import AntD from "ant-design-vue";
 import store from "@/store";
 import router from "@/router";
 import directives from "@/directives";
@@ -11,7 +11,7 @@ import "@/styles/index.less";
 
 Vue.use(VueRouter);
 Vue.use(directives);
-Vue.use(Antd);
+Vue.use(AntD);
 Vue.use(HaoFields);
 Vue.use(HaoSearchTable);
 Vue.filter("numberFormat", (value, precision = 0) => {

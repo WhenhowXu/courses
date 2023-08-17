@@ -5,11 +5,7 @@ class Response {
     this.message = message;
   }
 }
-class ErrorResponse {
-  constructor(message = "error", data = null) {
-    this.code = -1;
-    this.data = data;
-    this.message = message;
-  }
-}
-module.exports = { Response, ErrorResponse };
+const SuccessRes = (data) => new Response(data);
+const ErrorRes = (message) => new Response(null, -1, message);
+
+module.exports = { SuccessRes, ErrorRes };

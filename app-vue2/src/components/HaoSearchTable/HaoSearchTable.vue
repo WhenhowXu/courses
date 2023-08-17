@@ -1,8 +1,9 @@
 <template>
   <div class="hao-search-table-wrapper">
-    <div class="hao-search-header">
+    <div class="hao-search-header" v-show="!hideFilters">
       <HaoFilters
         :filters="formFilters"
+        :hideToggle="hideToggle"
         @init="handleInit"
         @search="handleSearch"
       />
@@ -61,6 +62,8 @@ export default {
   components: { HaoFilters, HaoPagination, HaoTableTitle },
   props: {
     enableOrder: { type: Boolean, default: true }, // 开启序号列
+    hideFilters: { type: Boolean, default: false }, // 隐藏顶部筛选
+    hideToggle: { type: Boolean, default: false },
     orderColumnProps: {
       type: Object,
       default: () => ({
@@ -115,9 +118,13 @@ export default {
   methods: {
     updateList(changeFilters = {}) {
       if (isFunction(this.loadData)) {
+        const _fillers = {
+          filters: changeFilters,
+          pagination: { current: this.current, pageSize: this.pageSize },
+        };
         let params = isFunction(this.turnConditionsToParams)
-          ? this.turnConditionsToParams(changeFilters)
-          : { ...changeFilters };
+          ? this.turnConditionsToParams(_fillers)
+          : { _fillers };
         this.loading = true;
         this.loadData(params)
           .then((res) => {

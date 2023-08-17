@@ -1,32 +1,37 @@
 const sql = require("./db");
+const queryByPage = require("../db/queryByPage");
 
 const User = function (user) {
   this.username = user.username;
   this.password = user.password;
   this.depend = user.depend;
   this.avatar = user.avatar;
+  this.create_time = new Date();
 };
 
 User.getAll = (data, result) => {
   const { size = 10, page = 1 } = data;
-  console.log(page, size);
-  sql.query("SELECT * FROM users", (err, res) => {
+  queryByPage(sql, "users", page, size, (err, res) => {
     if (err) {
       return result(null, err);
     }
-    result(null, { data: res, page, size, total: 100 });
+    result(null, res);
   });
 };
 
 User.create = (newUser, result) => {
-  sql.query("INSERT INTO users SET ?", newUser, (err, res) => {
-    if (err) {
-      result(err, null);
-      return;
+  sql.query(
+    "INSERT INTO users SET ?",
+    { ...newUser, create_time: new Date() },
+    (err, res) => {
+      if (err) {
+        result(err, null);
+        return;
+      }
+      console.log("新增用户成功：", { userId: res.userId, ...newUser });
+      result(null, { userId: res.userId, ...newUser });
     }
-    console.log("新增用户成功：", { userId: res.userId, ...newUser });
-    result(null, { userId: res.userId, ...newUser });
-  });
+  );
 };
 
 User.update = (newUser, result) => {
@@ -54,8 +59,17 @@ User.delete = (userId, result) => {
       result(err, null);
       return;
     }
-    console.log("删除用户成功：", userId);
     result(null, res);
+  });
+};
+
+User.findById = (userId, result) => {
+  sql.query("SELECT * FROM users WHERE user_id = ?", userId, (err, res) => {
+    if (err) {
+      result(err, null);
+      return;
+    }
+    result(null, res[0]);
   });
 };
 

@@ -4,23 +4,24 @@
     <hao-search-table
       ref="searchTableRef"
       rowKey="id"
-      enableOrder
+      hideFilters
       hideToggle
+      enableOrder
       :orderColumn="{ width: 100 }"
       :columns="columns"
       :loadData="loadData"
       :turnConditionsToParams="turnConditionsToParams"
-      :titleProps="{ title: '用户列表' }"
+      :titleProps="{ title: '菜单列表' }"
     >
       <template v-slot:titleActions>
-        <a-button icon="plus" @click="openAddModal">新增用户</a-button>
+        <a-button icon="plus" @click="openAddModal">新增</a-button>
       </template>
       <template v-slot:actions="slotProps">
         <a-space>
           <hao-link-button
             :loading="slotProps.record['DELETE_LOADING']"
             :onClick="handleDelete.bind(this, slotProps)"
-            >删除</hao-link-button
+            >新增</hao-link-button
           >
           <hao-link-button :onClick="openEditModal.bind(this, slotProps)"
             >编辑</hao-link-button
@@ -39,20 +40,26 @@ import { fetchUsers, deleteUser } from "@/api/user";
 import UserModal from "./UserModal.vue";
 const columns = [
   {
-    dataIndex: "username",
+    dataIndex: "pageName",
     width: 120,
-    title: "用户名",
+    title: "页面名称",
     filterConfig: {
       type: "input",
     },
   },
+  { title: "图标", dataIndex: "icon", width: 100 },
   {
-    dataIndex: "depend",
+    dataIndex: "path",
     width: 120,
-    title: "公司",
+    title: "路径",
   },
   {
-    dataIndex: "create_time",
+    dataIndex: "template",
+    width: 120,
+    title: "模板",
+  },
+  {
+    dataIndex: "createTime",
     title: "创建日期",
     width: 100,
     filterConfig: {
@@ -67,6 +74,7 @@ const columns = [
       type: "rangePicker",
     },
   },
+  { title: "启用状态", dataIndex: "active", width: 100 },
   {
     title: "操作",
     dataIndex: "actions",
@@ -83,11 +91,9 @@ export default {
     };
   },
   methods: {
-    turnConditionsToParams({ filters, pagination } = {}) {
+    turnConditionsToParams(conditions) {
       return {
-        ...filters,
-        page: pagination.current,
-        size: pagination.pageSize,
+        pageSize: conditions.pageSize,
       };
     },
     async loadData(params) {

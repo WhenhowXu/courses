@@ -50,6 +50,7 @@
           <a-button type="primary" @click="handleSearch">查询</a-button>
           <a-button @click="handleReset">重置</a-button>
           <a-button
+            v-if="!hideToggle"
             type="link"
             size="small"
             :icon="folded ? 'down' : 'up'"
@@ -70,6 +71,7 @@ export default {
   components: { HaoYearPicker },
   props: {
     filters: { type: Array, default: () => [] },
+    hideToggle: { type: Boolean, default: false }, // 是否隐藏展开、收起切换
   },
   data() {
     return {

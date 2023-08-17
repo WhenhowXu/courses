@@ -1,5 +1,3 @@
-import { LOGIN, GET_MENUS_BUTTONS } from "./constants";
-import { axios } from "@/api/utils";
+import fetch from "@/utils/fetch";
 
-export const login = (params) => axios.get(LOGIN, params);
-export const getMenus = (data) => axios.post(GET_MENUS_BUTTONS, data).then(res=>res.data);
+export const getMenus = (data) => fetch.post('/api/auth/getPermissions', data);
